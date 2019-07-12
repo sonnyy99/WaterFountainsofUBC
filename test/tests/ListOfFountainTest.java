@@ -50,6 +50,19 @@ public class ListOfFountainTest {
     }
 
     @Test
+    public void testRemoveComplex2(){
+        testLoF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
+        testLoF.AddFountain(1, "The Nest", "Electronic", "By The Corner Store");
+        testLoF.AddFountain(1, "SRC", "Electronic", "Inside the Birdcoop");
+        testLoF.allFountains.remove(1);
+        assertEquals(2, testLoF.allFountains.size());
+        testLoF.allFountains.remove(1);
+        assertEquals(1, testLoF.allFountains.size());
+        testLoF.allFountains.remove(0);
+        assertEquals(0, testLoF.allFountains.size());
+    }
+
+    @Test
     public void testPrintFountain() {
         Fountain f = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         testLoF.PrintFountain(f);
