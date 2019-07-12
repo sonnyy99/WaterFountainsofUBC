@@ -4,20 +4,39 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListOfFountain {
-    private ArrayList<Fountain> allFountains;
+    public ArrayList<Fountain> allFountains;
 
     public ListOfFountain() {
         allFountains = new ArrayList<>();
     }
 
-    public void addFountain(int floor, String buildingName, String type, String description) {
+    // REQUIRES: floor is a positive integer
+    // MODIFIES: this
+    // EFFECTS: Adds a fountain to the list of all fountains based on the user's input
+    public void AddFountain(int floor, String buildingName, String type, String description) {
         Fountain f = new Fountain(floor, buildingName, type, description);
         allFountains.add(f);
     }
 
+    // REQUIRES: Given fountain is not null
+    // EFFECTS: Prints out information about the given fountain
+    public void PrintFountain(Fountain f) {
+        System.out.println("Floor: " + f.getFloor());
+        System.out.println("Building: " + f.getBuildingName());
+        System.out.println("Type of Fountain: " + f.getType());
+        System.out.println("Description of Location: " + f.getDescription() + "\n");
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    public void PrintFountains(ListOfFountain lof) {
+        for (Fountain f : lof.allFountains) {
+            PrintFountain(f);
+        }
+    }
+
     public static void main(String args[]) {
         ListOfFountain lof = new ListOfFountain();
-        lof.addFountain(1, "The Nest", "Electronic", "By the corner store");
 
         String in = "";
         System.out.println("Type 'EXIT' when you would like to close the program.");
@@ -50,7 +69,7 @@ public class ListOfFountain {
                 System.out.println("Describe where the water fountain is (close to which classrooms)");
                 String description = userDescription.nextLine();
 
-                lof.addFountain(floor, buildingName, type, description);
+                lof.AddFountain(floor, buildingName, type, description);
             }
 
             if (in.equals("2")) {
@@ -58,20 +77,15 @@ public class ListOfFountain {
                 System.out.println("Which entry would you like to remove? (To delete first entry type '1')");
                 String stringFountainRemoved = userRemove.nextLine();
                 int FountainRemoved = Integer.parseInt(stringFountainRemoved);
+
                 lof.allFountains.remove(FountainRemoved - 1);
             }
 
             if(in.equals("3")) {
-                for(Fountain f: lof.allFountains) {
-                    System.out.println("Floor: " + f.getFloor());
-                    System.out.println("Building: " + f.getBuildingName());
-                    System.out.println("Type of Fountain: " + f.getType());
-                    System.out.println("Description of Location: " + f.getDescription());
-                }
-
+                lof.PrintFountains(lof);
             }
 
         }
-
     }
 }
+
