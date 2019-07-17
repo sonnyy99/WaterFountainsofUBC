@@ -17,7 +17,7 @@ import static ui.model.ListOfFountain.allFountains;
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException {
         ListOfFountain lof = new ListOfFountain();
-        load();
+        load("input.json");
 
         String in = "";
         System.out.println("Type 'EXIT' when you would like to close the program.");
@@ -40,7 +40,7 @@ public class FountainLocations implements Loadable, Saveable {
             }
         }
 
-        save();
+        save("input.json");
     }
 
     private void RemoveFountain(ListOfFountain lof) {
@@ -83,8 +83,8 @@ public class FountainLocations implements Loadable, Saveable {
 
     // Got some code from here: https://stackoverflow.com/questions/
     // 29319434/how-to-save-data-with-gson-in-a-json-file
-    public void save() throws IOException {
-        try (Writer writer = new FileWriter("input.json")) {
+    public void save(String s) throws IOException {
+        try (Writer writer = new FileWriter(s)) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(allFountains, writer);
         }
@@ -92,8 +92,8 @@ public class FountainLocations implements Loadable, Saveable {
 
     // Got some code from here: https://stackoverflow.com/questions/
     // 29965764/how-to-parse-json-file-with-gson
-    public void load() throws FileNotFoundException {
-        String path = "input.json";
+    public void load(String s) throws FileNotFoundException {
+        String path = s;
         BufferedReader br = new BufferedReader(new FileReader(path));
         Gson gson = new Gson ();
 

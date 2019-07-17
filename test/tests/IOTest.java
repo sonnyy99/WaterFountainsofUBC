@@ -32,16 +32,21 @@ public class IOTest {
     }
 
     public void testLoad(Loadable testFL) throws FileNotFoundException {
-        testFL.load();
+        testFL.load("test.json");
     }
 
     @Test
     public void testSaveAll() throws IOException {
         testLOF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testSave(testFL);
+        testLoad(testFL);
+        assertEquals(2, ListOfFountain.allFountains.get(0).getFloor());
+        assertEquals("The Nest", ListOfFountain.allFountains.get(0).getBuildingName());
+        assertEquals("Electronic", ListOfFountain.allFountains.get(0).getType());
+        assertEquals("By Blue Chip", ListOfFountain.allFountains.get(0).getDescription());
     }
 
     public void testSave(Saveable testFL) throws IOException {
-        testFL.save();
+        testFL.save("test.json");
     }
 }
