@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ui.model.MechanicalFountain;
 import ui.model.ListOfFountain;
-import ui.model.Loadable;
-import ui.model.Saveable;
+import ui.model.fileIO.Loadable;
+import ui.model.fileIO.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class FountainLocations implements Loadable, Saveable {
         String buildingName = userBuildingName.nextLine();
 
         Scanner userType = new Scanner(System.in);
-        System.out.println("What type of fountain is it? (Handle or Electronic)");
+        System.out.println("What type of fountain is it? (Mechanical or Electronic)");
         String type = userType.nextLine();
 
         Scanner userDescription = new Scanner(System.in);

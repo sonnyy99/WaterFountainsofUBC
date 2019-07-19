@@ -1,4 +1,4 @@
-package ui.model;
+package ui.model.fileIO;
 
 import java.io.IOException;
 

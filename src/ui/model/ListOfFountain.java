@@ -14,11 +14,11 @@ public class ListOfFountain {
     // MODIFIES: this
     // EFFECTS: Adds a fountain to the list of all fountains based on the user's input
     public void AddFountain(int floor, String buildingName, String type, String description) {
-        if(type == "Electronic") {
+        if(type.equals("Electronic")) {
             Fountain f = new ElectronicFountain(floor, buildingName, type, description);
             allFountains.add(f);
         }
-        if(type == "Mechanical") {
+        if(type.equals("Mechanical")) {
             Fountain f = new MechanicalFountain(floor, buildingName, type, description);
             allFountains.add(f);
         }

@@ -15,6 +15,7 @@ public class MechanicalFountain extends Fountain {
         System.out.println("Type of Fountain: Mechanical");
         System.out.println("Description of Location: " + f.getDescription() + "\n");
     }
+
     @Override
     public void howToFill() {
         System.out.println("Hold down the lever/button manually");

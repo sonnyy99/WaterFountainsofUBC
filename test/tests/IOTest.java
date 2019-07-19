@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import ui.FountainLocations;
 import ui.model.ListOfFountain;
-import ui.model.Loadable;
-import ui.model.Saveable;
+import ui.model.fileIO.Loadable;
+import ui.model.fileIO.Saveable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
