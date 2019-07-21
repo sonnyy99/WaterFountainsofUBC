@@ -25,4 +25,63 @@ public class ListOfFountain {
             f.PrintFountain(f);
         }
     }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    //          If they are of the specified type
+    public void PrintFountainsType(ListOfFountain lof, String type) {
+        for (Fountain f : allFountains) {
+            if(f.getType().equals(type)) {
+                f.PrintFountain(f);
+            }
+        }
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    //          If they are in the given building
+    public void PrintFountains(ListOfFountain lof, String buildingName) {
+        for (Fountain f : allFountains) {
+            if(f.getBuildingName().equals(buildingName)) {
+                f.PrintFountain(f);
+            }
+        }
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    //          If they are in the given building and of the given type
+    public void PrintFountains(ListOfFountain lof, String buildingName, String type) {
+        for (Fountain f : allFountains) {
+            if(f.getBuildingName().equals(buildingName) &&
+                    f.getType().equals(type)) {
+                f.PrintFountain(f);
+            }
+        }
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    //          If they are in the given building and floor
+    public void PrintFountains(ListOfFountain lof, String buildingName, int floor) {
+        for (Fountain f : allFountains) {
+            if(f.getBuildingName().equals(buildingName) &&
+                    f.getFloor() == floor) {
+                f.PrintFountain(f);
+            }
+        }
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    //          If they are in the given building, floor, and of the given type
+    public void PrintFountains(ListOfFountain lof, String buildingName, int floor, String type) {
+        for (Fountain f : allFountains) {
+            if(f.getBuildingName().equals(buildingName) &&
+                    f.getFloor() == floor && f.getType().equals(type)) {
+                f.PrintFountain(f);
+            }
+        }
+    }
+
 }

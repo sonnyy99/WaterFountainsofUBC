@@ -16,8 +16,19 @@ import static ui.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException {
+        final String fileName = "input.json";
         ListOfFountain lof = new ListOfFountain();
-        load("input.json");
+
+        try {
+            load(fileName);
+        }
+        catch (IOException io) {
+            System.out.println("Error: A file named " + fileName
+                    + " could not be loaded");
+            System.out.println("Creating a new file named " + fileName + "\n");
+            save(fileName);
+        }
+
 
         String in = "";
         System.out.println("Type 'EXIT' when you would like to close the program.");
@@ -40,7 +51,7 @@ public class FountainLocations implements Loadable, Saveable {
             }
         }
 
-        save("input.json");
+        save(fileName);
     }
 
     private void RemoveFountain(ListOfFountain lof) {
