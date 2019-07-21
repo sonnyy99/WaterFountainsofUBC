@@ -1,16 +1,16 @@
 package ui.model;
 
-public abstract class Fountain {
-    protected int floor;
-    protected String buildingName;
-    protected String type;
-    protected String description;
+public class Fountain {
+    private int floor;
+    private String buildingName;
+    private String type;
+    private String description;
 
-    public Fountain(String type, int floor, String description, String buildingName) {
-        this.type = type;
+    public Fountain(int floor, String type, String buildingName, String description) {
         this.floor = floor;
-        this.description = description;
+        this.type = type;
         this.buildingName = buildingName;
+        this.description = description;
     }
 
     public int getFloor() {
@@ -37,6 +37,4 @@ public abstract class Fountain {
         System.out.println("Type of Fountain: " + f.getType());
         System.out.println("Description of Location: " + f.getDescription() + "\n");
     }
-
-    public abstract void howToFill();
 }

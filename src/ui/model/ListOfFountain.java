@@ -14,20 +14,14 @@ public class ListOfFountain {
     // MODIFIES: this
     // EFFECTS: Adds a fountain to the list of all fountains based on the user's input
     public void AddFountain(int floor, String buildingName, String type, String description) {
-        if(type.equals("Electronic")) {
-            Fountain f = new ElectronicFountain(floor, buildingName, type, description);
+            Fountain f = new Fountain(floor, buildingName, type, description);
             allFountains.add(f);
-        }
-        if(type.equals("Mechanical")) {
-            Fountain f = new MechanicalFountain(floor, buildingName, type, description);
-            allFountains.add(f);
-        }
     }
 
     // REQUIRES: List of fountains is not null
     // EFFECTS: Prints out information about every fountain in the given list
     public void PrintFountains(ListOfFountain lof) {
-        for (Fountain f : lof.allFountains) {
+        for (Fountain f : allFountains) {
             f.PrintFountain(f);
         }
     }

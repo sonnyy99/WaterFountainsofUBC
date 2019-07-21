@@ -3,7 +3,7 @@ package ui;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ui.model.MechanicalFountain;
+import ui.model.Fountain;
 import ui.model.ListOfFountain;
 import ui.model.fileIO.Loadable;
 import ui.model.fileIO.Saveable;
@@ -100,7 +100,7 @@ public class FountainLocations implements Loadable, Saveable {
         // Got this from here: https://stackoverflow.com/questions/
         // 27014417/how-to-use-gson-to-convert-json-to-arraylist-if-
         // the-list-contain-different-class
-        TypeToken<ArrayList<MechanicalFountain>> token = new TypeToken<ArrayList<MechanicalFountain>>() {};
+        TypeToken<ArrayList<Fountain>> token = new TypeToken<ArrayList<Fountain>>() {};
         allFountains = gson.fromJson(br, token.getType());
     }
 }
