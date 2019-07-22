@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ui.FountainLocations;
 import ui.model.ListOfFountain;
+import ui.model.exceptions.FountainTypeException;
 import ui.model.fileIO.Loadable;
 import ui.model.fileIO.Saveable;
 
@@ -36,7 +37,7 @@ public class IOTest {
     }
 
     @Test
-    public void testSaveAll() throws IOException {
+    public void testSaveAll() throws IOException, FountainTypeException {
         testLOF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testSave(testFL);
         testLoad(testFL);

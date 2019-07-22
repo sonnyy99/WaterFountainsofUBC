@@ -29,12 +29,11 @@ public class Fountain {
         return this.description;
     }
 
-    // REQUIRES: Given fountain is not null
     // EFFECTS: Prints out information about the given fountain
     public void PrintFountain(Fountain f) {
-        System.out.println("Floor: " + f.getFloor());
-        System.out.println("Building: " + f.getBuildingName());
-        System.out.println("Type of Fountain: " + f.getType());
-        System.out.println("Description of Location: " + f.getDescription() + "\n");
-    }
+            System.out.println("Floor: " + f.getFloor());
+            System.out.println("Building: " + f.getBuildingName());
+            System.out.println("Type of Fountain: " + f.getType());
+            System.out.println("Description of Location: " + f.getDescription() + "\n");
+        }
 }

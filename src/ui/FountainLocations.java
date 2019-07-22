@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ui.model.Fountain;
 import ui.model.ListOfFountain;
+import ui.model.exceptions.FountainTypeException;
 import ui.model.fileIO.Loadable;
 import ui.model.fileIO.Saveable;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
 import static ui.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
-    public void run() throws IOException {
+    public void run() throws IOException, FountainTypeException {
         final String fileName = "input.json";
         ListOfFountain lof = new ListOfFountain();
 
@@ -28,10 +29,11 @@ public class FountainLocations implements Loadable, Saveable {
             System.out.println("Creating a new file named " + fileName + "\n");
             save(fileName);
         }
-
+        finally {
+            System.out.println("Type 'EXIT' when you would like to close the program.");
+        }
 
         String in = "";
-        System.out.println("Type 'EXIT' when you would like to close the program.");
 
         while(!in.equals("EXIT")) {
             Scanner userOption = new Scanner(System.in);
@@ -58,9 +60,31 @@ public class FountainLocations implements Loadable, Saveable {
         Scanner userRemove = new Scanner(System.in);
         System.out.println("Which entry would you like to remove? (To delete first entry type '1')");
         String stringFountainRemoved = userRemove.nextLine();
+
+        try {
+            int FountainRemoved = Integer.parseInt(stringFountainRemoved);
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error: Not a valid integer. Please try again.");
+            RemoveFountain(lof);
+        }
+
         int FountainRemoved = Integer.parseInt(stringFountainRemoved);
 
-        allFountains.remove(FountainRemoved - 1);
+        if(FountainRemoved < 0) {
+            System.out.println("Error: Integer must be positive. " +
+                    "Please try again.");
+            RemoveFountain(lof);
+        }
+
+        try {
+            allFountains.remove(FountainRemoved - 1);
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: Fountain does not exist at this index." +
+                    "Please enter a valid index.");
+            RemoveFountain(lof);
+        }
     }
 
     private void NewFountain(ListOfFountain lof) {
@@ -68,7 +92,22 @@ public class FountainLocations implements Loadable, Saveable {
         System.out.println("What floor is the water fountain on?");
         System.out.println("Ex: 1");
         String stringFloor = userFloor.nextLine();
+
+        try {
+            int floor = Integer.parseInt(stringFloor);
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error: Not a valid integer. Please try again.");
+            NewFountain(lof);
+        }
+
         int floor = Integer.parseInt(stringFloor);
+
+        if(floor < 0) {
+            System.out.println("Error: Integer must be positive. " +
+                    "Please try again.");
+            NewFountain(lof);
+        }
 
         Scanner userBuildingName = new Scanner(System.in);
         System.out.println("What building is in the water fountain in?");
@@ -79,10 +118,19 @@ public class FountainLocations implements Loadable, Saveable {
         String type = userType.nextLine();
 
         Scanner userDescription = new Scanner(System.in);
-        System.out.println("Describe where the water fountain is (close to which classrooms)");
+        System.out.println("Describe where the water fountain is " +
+                "(close to which classrooms)");
         String description = userDescription.nextLine();
 
-        lof.AddFountain(floor, buildingName, type, description);
+
+        try {
+            lof.AddFountain(floor, buildingName, type, description);
+        } catch (FountainTypeException e) {
+            System.out.println("Error: Type must be Mechanical or Electronic. " +
+                    "Please try again. \n");
+            NewFountain(lof);
+        }
+
     }
 
     private void options() {

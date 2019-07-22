@@ -1,5 +1,7 @@
 package ui.model;
 
+import ui.model.exceptions.FountainTypeException;
+
 import java.util.ArrayList;
 
 public class ListOfFountain {
@@ -13,16 +15,23 @@ public class ListOfFountain {
     //           one of: Electronic or Mechanical
     // MODIFIES: this
     // EFFECTS: Adds a fountain to the list of all fountains based on the user's input
-    public void AddFountain(int floor, String buildingName, String type, String description) {
+    public void AddFountain(int floor, String buildingName, String type,
+                            String description) throws FountainTypeException {
+        if(!(type.equals("Mechanical") || type.equals("Electronic"))) {
+            throw new FountainTypeException("Error: Fountain type must be " +
+                    "Mechanical or Electronic.");
+        }
+        else {
             Fountain f = new Fountain(floor, buildingName, type, description);
             allFountains.add(f);
+        }
     }
 
     // REQUIRES: List of fountains is not null
     // EFFECTS: Prints out information about every fountain in the given list
     public void PrintFountains(ListOfFountain lof) {
         for (Fountain f : allFountains) {
-            f.PrintFountain(f);
+                f.PrintFountain(f);
         }
     }
 
@@ -32,7 +41,7 @@ public class ListOfFountain {
     public void PrintFountainsType(ListOfFountain lof, String type) {
         for (Fountain f : allFountains) {
             if(f.getType().equals(type)) {
-                f.PrintFountain(f);
+                    f.PrintFountain(f);
             }
         }
     }
@@ -43,7 +52,7 @@ public class ListOfFountain {
     public void PrintFountains(ListOfFountain lof, String buildingName) {
         for (Fountain f : allFountains) {
             if(f.getBuildingName().equals(buildingName)) {
-                f.PrintFountain(f);
+                    f.PrintFountain(f);
             }
         }
     }
@@ -53,7 +62,7 @@ public class ListOfFountain {
     //          If they are in the given building and of the given type
     public void PrintFountains(ListOfFountain lof, String buildingName, String type) {
         for (Fountain f : allFountains) {
-            if(f.getBuildingName().equals(buildingName) &&
+            if (f.getBuildingName().equals(buildingName) &&
                     f.getType().equals(type)) {
                 f.PrintFountain(f);
             }
