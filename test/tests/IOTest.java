@@ -26,10 +26,10 @@ public class IOTest {
     @Test
     public void testLoadAll() throws FileNotFoundException {
         testLoad(testFL);
-        assertEquals(3, ListOfFountain.allFountains.get(0).getFloor());
-        assertEquals("a", ListOfFountain.allFountains.get(0).getBuildingName());
-        assertEquals("b", ListOfFountain.allFountains.get(0).getType());
-        assertEquals("c", ListOfFountain.allFountains.get(0).getDescription());
+        assertEquals(1, ListOfFountain.allFountains.get(0).getFloor());
+        assertEquals("Sub", ListOfFountain.allFountains.get(0).getBuildingName());
+        assertEquals("Mechanical", ListOfFountain.allFountains.get(0).getType());
+        assertEquals("By Washrooms", ListOfFountain.allFountains.get(0).getDescription());
     }
 
     public void testLoad(Loadable testFL) throws FileNotFoundException {

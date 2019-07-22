@@ -6,10 +6,11 @@ public class Fountain {
     private String type;
     private String description;
 
-    public Fountain(int floor, String type, String buildingName, String description) {
+    public Fountain(int floor, String buildingName, String type,
+                    String description) {
         this.floor = floor;
-        this.type = type;
         this.buildingName = buildingName;
+        this.type = type;
         this.description = description;
     }
 
