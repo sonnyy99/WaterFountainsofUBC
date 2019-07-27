@@ -1,17 +1,18 @@
 package tests;
 
+import main.model.ListOfFountain;
+import main.model.exceptions.FountainTypeException;
+import main.model.fileIO.Loadable;
+import main.model.fileIO.Saveable;
+import main.ui.FountainLocations;
 import org.junit.Before;
 import org.junit.Test;
-import ui.FountainLocations;
-import ui.model.ListOfFountain;
-import ui.model.exceptions.FountainTypeException;
-import ui.model.fileIO.Loadable;
-import ui.model.fileIO.Saveable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+
 
 public class IOTest {
     private FountainLocations testFL;

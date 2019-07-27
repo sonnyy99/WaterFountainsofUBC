@@ -1,11 +1,12 @@
 package tests;
 
+import main.model.ListOfFountain;
+import main.model.exceptions.FountainTypeException;
 import org.junit.Before;
 import org.junit.Test;
-import ui.model.ListOfFountain;
-import ui.model.exceptions.FountainTypeException;
 
 import static org.junit.Assert.assertEquals;
+
 
 public class ExceptionTest {
 

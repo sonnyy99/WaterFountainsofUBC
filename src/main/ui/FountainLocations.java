@@ -1,19 +1,19 @@
-package ui;
+package main.ui;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ui.model.Fountain;
-import ui.model.ListOfFountain;
-import ui.model.exceptions.FountainTypeException;
-import ui.model.fileIO.Loadable;
-import ui.model.fileIO.Saveable;
+import main.model.Fountain;
+import main.model.ListOfFountain;
+import main.model.exceptions.FountainTypeException;
+import main.model.fileIO.Loadable;
+import main.model.fileIO.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static ui.model.ListOfFountain.allFountains;
+import static main.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException, FountainTypeException {

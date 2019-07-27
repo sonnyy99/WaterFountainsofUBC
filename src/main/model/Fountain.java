@@ -1,4 +1,4 @@
-package ui.model;
+package main.model;
 
 public class Fountain {
     private int floor;

@@ -1,6 +1,6 @@
-package ui;
+package main.ui;
 
-import ui.model.exceptions.FountainTypeException;
+import main.model.exceptions.FountainTypeException;
 
 import java.io.IOException;
 
