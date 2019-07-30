@@ -11,6 +11,8 @@ import main.model.fileIO.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import static main.model.ListOfFountain.allFountains;

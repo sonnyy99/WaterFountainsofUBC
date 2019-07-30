@@ -1,8 +1,12 @@
 package main.ui;
 
+import main.model.Fountain;
 import main.model.exceptions.FountainTypeException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
