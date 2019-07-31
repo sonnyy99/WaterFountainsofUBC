@@ -19,7 +19,7 @@ public class IOTest {
     private ListOfFountain testLOF;
 
     @Before
-    public void startup() throws IOException {
+    public void startup() {
         testFL = new FountainLocations();
         testLOF = new ListOfFountain();
     }

@@ -19,7 +19,7 @@ import static main.model.ListOfBuilding.loadAllBuildings;
 import static main.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
-    public void run() throws IOException, FountainTypeException {
+    public void run() throws IOException {
         final String fileFountains = "fountains.json";
         final String fileBuildings = "buildings.json";
         ListOfFountain lof = new ListOfFountain();
@@ -57,11 +57,11 @@ public class FountainLocations implements Loadable, Saveable {
             in = userOption.nextLine();
 
             if (in.equals("1")) {
-                NewFountain(lof);
+                newFountain(lof);
             }
 
             if (in.equals("2")) {
-                RemoveFountain(lof);
+                removeFountain(lof);
             }
 
             if (in.equals("3")) {
@@ -70,7 +70,7 @@ public class FountainLocations implements Loadable, Saveable {
         }
     }
 
-    private void RemoveFountain(ListOfFountain lof) {
+    private void removeFountain(ListOfFountain lof) {
         isListEmpty(lof);
 
         Scanner userRemove = new Scanner(System.in);
@@ -79,23 +79,23 @@ public class FountainLocations implements Loadable, Saveable {
         String stringFountainRemoved = userRemove.nextLine();
 
         try {
-            int FountainRemoved = Integer.parseInt(stringFountainRemoved);
+            int fountainRemoved = Integer.parseInt(stringFountainRemoved);
 
-            if (FountainRemoved < 0) {
+            if (fountainRemoved < 0) {
                 System.out.println("Error: Integer must be positive. Please try again.");
-                RemoveFountain(lof);
+                removeFountain(lof);
             } else {
                 try {
-                    allFountains.remove(FountainRemoved - 1);
+                    allFountains.remove(fountainRemoved - 1);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Error: Fountain does not exist at this "
                             + "index. Please enter a valid index.");
-                    RemoveFountain(lof);
+                    removeFountain(lof);
                 }
             }
         } catch (NumberFormatException e) {
             System.out.println("Error: Not a valid integer. Please try again.");
-            RemoveFountain(lof);
+            removeFountain(lof);
         }
     }
 
@@ -107,7 +107,7 @@ public class FountainLocations implements Loadable, Saveable {
         }
     }
 
-    private void NewFountain(ListOfFountain lof) {
+    private void newFountain(ListOfFountain lof) {
         Scanner userFloor = new Scanner(System.in);
         System.out.println("What floor is the water fountain on?");
         System.out.println("Ex: 1");
@@ -118,7 +118,7 @@ public class FountainLocations implements Loadable, Saveable {
 
             if (floor < 0) {
                 System.out.println("Error: Integer must be positive. Please try again.");
-                NewFountain(lof);
+                newFountain(lof);
             } else {
                 Scanner userBuildingName = new Scanner(System.in);
                 System.out.println("What building is in the water fountain in?");
@@ -139,12 +139,12 @@ public class FountainLocations implements Loadable, Saveable {
                 } catch (FountainTypeException e) {
                     System.out.println("Error: Type must be Mechanical or "
                             + "Electronic. Please try again. \n");
-                    NewFountain(lof);
+                    newFountain(lof);
                 }
             }
         } catch (NumberFormatException e) {
                 System.out.println("Error: Not a valid integer. Please try again.");
-                NewFountain(lof);
+                newFountain(lof);
         }
     }
 

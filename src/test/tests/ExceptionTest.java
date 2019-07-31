@@ -22,7 +22,7 @@ public class ExceptionTest {
     public void testAddFountain() throws FountainTypeException {
         testLoF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testLoF.AddFountain(1, "The Birdcoop", "Mechanical", "By the staircase");
-        assertEquals(2, testLoF.allFountains.size());
+        assertEquals(2, ListOfFountain.allFountains.size());
         // testLoF.AddFountain(3, "The Sub", "Bad", "By the washrooms");
     }
 

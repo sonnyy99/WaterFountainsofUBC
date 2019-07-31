@@ -41,7 +41,7 @@ public class Fountain {
     }
 
     // EFFECTS: Prints out information about the given fountain
-    public void PrintFountain(Fountain f) {
+    public void printFountain(Fountain f) {
             System.out.println("Floor: " + f.getFloor());
             System.out.println("Building: " + f.getBuildingName());
             System.out.println("Type of Fountain: " + f.getType());
@@ -50,8 +50,12 @@ public class Fountain {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)  {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Fountain fountain = (Fountain) o;
         return Objects.equals(building, fountain.building);
     }
