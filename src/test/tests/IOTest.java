@@ -1,5 +1,6 @@
 package tests;
 
+import main.model.ListOfBuilding;
 import main.model.ListOfFountain;
 import main.model.exceptions.FountainTypeException;
 import main.model.fileIO.Loadable;
@@ -17,24 +18,28 @@ import static org.junit.Assert.assertEquals;
 public class IOTest {
     private FountainLocations testFL;
     private ListOfFountain testLOF;
+    private ListOfBuilding testLOB;
 
     @Before
     public void startup() {
         testFL = new FountainLocations();
         testLOF = new ListOfFountain();
+        testLOB = new ListOfBuilding();
     }
 
     @Test
     public void testLoadAll() throws FileNotFoundException {
         testLoad(testFL);
-        assertEquals(1, ListOfFountain.allFountains.get(0).getFloor());
-        assertEquals("Sub", ListOfFountain.allFountains.get(0).getBuildingName());
-        assertEquals("Mechanical", ListOfFountain.allFountains.get(0).getType());
-        assertEquals("By Washrooms", ListOfFountain.allFountains.get(0).getDescription());
+        assertEquals(2, ListOfFountain.allFountains.get(0).getFloor());
+        assertEquals("The Nest", ListOfFountain.allFountains.get(0).getBuildingName());
+        assertEquals("Electronic", ListOfFountain.allFountains.get(0).getType());
+        assertEquals("By Blue Chip", ListOfFountain.allFountains.get(0).getDescription());
+        assertEquals("The Nest", ListOfFountain.allFountains.get(0).getBuilding().getName());
     }
 
     public void testLoad(Loadable testFL) throws FileNotFoundException {
-        testFL.loadFountain("test.json");
+        testFL.loadFountain("testFountain.json");
+        testFL.loadBuilding("testBuilding.json");
     }
 
     @Test
@@ -49,6 +54,7 @@ public class IOTest {
     }
 
     public void testSave(Saveable testFL) throws IOException {
-        testFL.saveFountain("test.json");
+        testFL.saveFountain("testFountain.json");
+        testFL.saveBuilding("testBuilding.json");
     }
 }

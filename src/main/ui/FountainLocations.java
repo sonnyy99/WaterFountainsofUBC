@@ -74,28 +74,34 @@ public class FountainLocations implements Loadable, Saveable {
         isListEmpty(lof);
 
         Scanner userRemove = new Scanner(System.in);
-        System.out.println("Which entry would you like to remove? "
-                + "(To delete first entry type '1')");
+        System.out.println("Which entry would you like to remove?");
+        System.out.println("To delete first entry type '1'");
+        System.out.println("To cancel type 'CANCEL'");
+
         String stringFountainRemoved = userRemove.nextLine();
 
-        try {
-            int fountainRemoved = Integer.parseInt(stringFountainRemoved);
+        if (stringFountainRemoved.equals("CANCEL")) {
+            chooseOptions(lof);
+        } else {
+            try {
+                int fountainRemoved = Integer.parseInt(stringFountainRemoved);
 
-            if (fountainRemoved < 0) {
-                System.out.println("Error: Integer must be positive. Please try again.");
-                removeFountain(lof);
-            } else {
-                try {
-                    allFountains.remove(fountainRemoved - 1);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Error: Fountain does not exist at this "
-                            + "index. Please enter a valid index.");
+                if (fountainRemoved < 0) {
+                 System.out.println("Error: Integer must be positive. Please try again.");
                     removeFountain(lof);
+                } else {
+                    try {
+                        allFountains.remove(fountainRemoved - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Error: Fountain does not exist at this "
+                                + "index. Please enter a valid index.");
+                        removeFountain(lof);
+                    }
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Not a valid integer. Please try again.");
+                removeFountain(lof);
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Not a valid integer. Please try again.");
-            removeFountain(lof);
         }
     }
 

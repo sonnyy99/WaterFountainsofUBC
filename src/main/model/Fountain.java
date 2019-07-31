@@ -40,6 +40,10 @@ public class Fountain {
         return this.description;
     }
 
+    public Building getBuilding() {
+        return this.building;
+    }
+
     // EFFECTS: Prints out information about the given fountain
     public void printFountain(Fountain f) {
             System.out.println("Floor: " + f.getFloor());
