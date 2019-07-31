@@ -18,6 +18,14 @@ public class Building {
         }
     }
 
+    public static void loadFountains(Building b) {
+        for (Fountain f: ListOfFountain.allFountains) {
+            if (f.getBuildingName() == b.getName()) {
+                b.fountainsInBuilding.add(f);
+            }
+        }
+    }
+
     public String getName() {
         return this.name;
     }

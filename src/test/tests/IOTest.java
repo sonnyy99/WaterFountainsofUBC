@@ -34,7 +34,7 @@ public class IOTest {
     }
 
     public void testLoad(Loadable testFL) throws FileNotFoundException {
-        testFL.load("test.json");
+        testFL.loadFountain("test.json");
     }
 
     @Test
@@ -49,6 +49,6 @@ public class IOTest {
     }
 
     public void testSave(Saveable testFL) throws IOException {
-        testFL.save("test.json");
+        testFL.saveFountain("test.json");
     }
 }

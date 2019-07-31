@@ -3,6 +3,7 @@ package main.ui;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import main.model.Building;
 import main.model.Fountain;
 import main.model.ListOfFountain;
 import main.model.exceptions.FountainTypeException;
@@ -11,29 +12,40 @@ import main.model.fileIO.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
+import static main.model.ListOfBuilding.allBuildings;
+import static main.model.ListOfBuilding.loadAllBuildings;
 import static main.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException, FountainTypeException {
-        final String fileName = "input.json";
+        final String fileFountains = "fountains.json";
+        final String fileBuildings = "buildings.json";
         ListOfFountain lof = new ListOfFountain();
 
         try {
-            load(fileName);
+            loadBuilding(fileBuildings);
         } catch (IOException io) {
-            System.out.println("Error: A file named " + fileName + " could not be loaded");
-            System.out.println("Creating a new file named " + fileName + "\n");
-            save(fileName);
+            System.out.println("Error: A file named " + fileBuildings + " could not be loaded");
+            System.out.println("Creating a new file named " + fileBuildings + "\n");
+            saveBuilding(fileBuildings);
+        }
+
+        try {
+            loadFountain(fileFountains);
+        } catch (IOException io) {
+            System.out.println("Error: A file named " + fileFountains + " could not be loaded");
+            System.out.println("Creating a new file named " + fileFountains + "\n");
+            saveFountain(fileFountains);
         } finally {
             System.out.println("Type 'EXIT' when you would like to close the program.");
         }
 
+        loadAllBuildings();
         chooseOptions(lof);
-        save(fileName);
+        saveFountain(fileFountains);
+        saveBuilding(fileBuildings);
     }
 
     private void chooseOptions(ListOfFountain lof) {
@@ -144,17 +156,24 @@ public class FountainLocations implements Loadable, Saveable {
     }
 
     // Got some code from here: https://stackoverflow.com/questions/
-    // 29319434/how-to-save-data-with-gson-in-a-json-file
-    public void save(String s) throws IOException {
+    // 29319434/how-to-saveFountain-data-with-gson-in-a-json-file
+    public void saveFountain(String s) throws IOException {
         try (Writer writer = new FileWriter(s)) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(allFountains, writer);
         }
     }
 
+    public void saveBuilding(String s) throws IOException {
+        try (Writer writer = new FileWriter(s)) {
+            Gson gson = new GsonBuilder().create();
+            gson.toJson(allBuildings, writer);
+        }
+    }
+
     // Got some code from here: https://stackoverflow.com/questions/
     // 29965764/how-to-parse-json-file-with-gson
-    public void load(String s) throws FileNotFoundException {
+    public void loadFountain(String s) throws FileNotFoundException {
         String path = s;
         BufferedReader br = new BufferedReader(new FileReader(path));
         Gson gson = new Gson();
@@ -164,6 +183,18 @@ public class FountainLocations implements Loadable, Saveable {
         // the-list-contain-different-class
         TypeToken<ArrayList<Fountain>> token = new TypeToken<ArrayList<Fountain>>() {};
         allFountains = gson.fromJson(br, token.getType());
+    }
+
+    public void loadBuilding(String s) throws FileNotFoundException {
+        String path = s;
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        Gson gson = new Gson();
+
+        // Got this from here: https://stackoverflow.com/questions/
+        // 27014417/how-to-use-gson-to-convert-json-to-arraylist-if-
+        // the-list-contain-different-class
+        TypeToken<ArrayList<Building>> token = new TypeToken<ArrayList<Building>>() {};
+        allBuildings = gson.fromJson(br, token.getType());
     }
 }
 

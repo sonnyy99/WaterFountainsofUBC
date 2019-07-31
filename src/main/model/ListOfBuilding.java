@@ -2,6 +2,8 @@ package main.model;
 
 import java.util.ArrayList;
 
+import static main.model.Building.loadFountains;
+
 public class ListOfBuilding {
     public static ArrayList<Building> allBuildings;
 
@@ -22,4 +24,11 @@ public class ListOfBuilding {
         }
         return null;
     }
+
+    public static void loadAllBuildings() {
+        for (Building b: allBuildings) {
+            loadFountains(b);
+        }
+    }
+
 }
