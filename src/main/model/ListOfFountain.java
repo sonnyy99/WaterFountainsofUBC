@@ -39,12 +39,4 @@ public class ListOfFountain {
             f.addBuilding(b);
         }
     }
-
-    // REQUIRES: List of fountains is not null
-    // EFFECTS: Prints out information about every fountain in the given list
-    public void PrintFountains(ListOfFountain lof) {
-        for (Fountain f : allFountains) {
-            f.printFountain(f);
-        }
-    }
 }

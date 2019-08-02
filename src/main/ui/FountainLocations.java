@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static main.model.ListOfBuilding.allBuildings;
+import static main.model.ListOfBuilding.getBuilding;
 import static main.model.ListOfBuilding.loadAllBuildings;
 import static main.model.ListOfFountain.allFountains;
 
@@ -65,7 +66,11 @@ public class FountainLocations implements Loadable, Saveable {
             }
 
             if (in.equals("3")) {
-                lof.PrintFountains(lof);
+                printFountains(allFountains);
+            }
+
+            if (in.equals("4")) {
+                printFountainsInBuilding(lof);
             }
         }
     }
@@ -154,11 +159,30 @@ public class FountainLocations implements Loadable, Saveable {
         }
     }
 
+    public void printFountainsInBuilding(ListOfFountain lof) {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Which building would you like to know the fountains of?");
+        String buildingName = userInput.nextLine();
+
+        Building b = getBuilding(buildingName);
+
+        try {
+            printFountains(b.getFountains());
+        } catch (NullPointerException e) {
+            System.out.println("Error: This building does not exist or does not have fountains.");
+            System.out.println("Returning to the main menu. \n");
+        } finally {
+            chooseOptions(lof);
+        }
+
+    }
+
     private void options() {
         System.out.println("What would you like to do?");
         System.out.println("[1] Make a new entry for a water fountain");
         System.out.println("[2] Remove an entry from the system");
         System.out.println("[3] Print out a list of all current water fountains");
+        System.out.println("[4] Print out all fountains in a selected building");
     }
 
     // Got some code from here: https://stackoverflow.com/questions/
@@ -196,11 +220,24 @@ public class FountainLocations implements Loadable, Saveable {
         BufferedReader br = new BufferedReader(new FileReader(path));
         Gson gson = new Gson();
 
-        // Got this from here: https://stackoverflow.com/questions/
-        // 27014417/how-to-use-gson-to-convert-json-to-arraylist-if-
-        // the-list-contain-different-class
         TypeToken<ArrayList<Building>> token = new TypeToken<ArrayList<Building>>() {};
         allBuildings = gson.fromJson(br, token.getType());
+    }
+
+    // REQUIRES: List of fountains is not null
+    // EFFECTS: Prints out information about every fountain in the given list
+    public void printFountains(ArrayList<Fountain> fountains) {
+        for (Fountain f : fountains) {
+            printFountain(f);
+        }
+    }
+
+    // EFFECTS: Prints out information about the given fountain
+    public void printFountain(Fountain f) {
+        System.out.println("Floor: " + f.getFloor());
+        System.out.println("Building: " + f.getBuildingName());
+        System.out.println("Type of Fountain: " + f.getType());
+        System.out.println("Description of Location: " + f.getDescription() + "\n");
     }
 }
 

@@ -22,6 +22,7 @@ public class ListOfBuilding {
 
     public static void loadAllBuildings() {
         for (Building b: allBuildings) {
+            b.fountainsInBuilding = new ArrayList<>();
             loadFountains(b);
         }
     }

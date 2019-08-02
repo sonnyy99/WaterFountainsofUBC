@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Building {
     private String name;
-    private transient ArrayList<Fountain> fountainsInBuilding;
+    protected transient ArrayList<Fountain> fountainsInBuilding;
 
     public Building(String name) {
         this.name = name;
-        fountainsInBuilding = new ArrayList<>();
+        this.fountainsInBuilding = new ArrayList<>();
     }
 
     public void addFountain(Fountain f) {

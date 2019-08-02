@@ -44,14 +44,6 @@ public class Fountain {
         return this.building;
     }
 
-    // EFFECTS: Prints out information about the given fountain
-    public void printFountain(Fountain f) {
-            System.out.println("Floor: " + f.getFloor());
-            System.out.println("Building: " + f.getBuildingName());
-            System.out.println("Type of Fountain: " + f.getType());
-            System.out.println("Description of Location: " + f.getDescription() + "\n");
-        }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)  {
