@@ -20,7 +20,7 @@ public class ListOfBuilding {
         return null;
     }
 
-    public static void loadAllBuildings() {
+    public static void reloadAllBuildings() {
         for (Building b: allBuildings) {
             b.fountainsInBuilding = new ArrayList<>();
             loadFountains(b);

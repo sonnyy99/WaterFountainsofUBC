@@ -38,8 +38,8 @@ public class IOTest {
     }
 
     public void testLoad(Loadable testFL) throws FileNotFoundException {
-        testFL.loadFountain("testFountain.json");
-        testFL.loadBuilding("testBuilding.json");
+        testFL.loadFountains("testFountain.json");
+        testFL.loadBuildings("testBuilding.json");
     }
 
     @Test

@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 import static main.model.ListOfBuilding.allBuildings;
 import static main.model.ListOfBuilding.getBuilding;
-import static main.model.ListOfBuilding.loadAllBuildings;
+import static main.model.ListOfBuilding.reloadAllBuildings;
 import static main.model.ListOfFountain.allFountains;
 
 public class FountainLocations implements Loadable, Saveable {
@@ -25,16 +25,18 @@ public class FountainLocations implements Loadable, Saveable {
         final String fileBuildings = "buildings.json";
         ListOfFountain lof = new ListOfFountain();
 
-        try {
-            loadBuilding(fileBuildings);
-        } catch (IOException io) {
-            System.out.println("Error: A file named " + fileBuildings + " could not be loaded");
-            System.out.println("Creating a new file named " + fileBuildings + "\n");
-            saveBuilding(fileBuildings);
-        }
+        tryLoadBuildings(fileBuildings);
+        tryLoadFountains(fileFountains);
 
+        reloadAllBuildings();
+        chooseOptions(lof);
+        saveFountain(fileFountains);
+        saveBuilding(fileBuildings);
+    }
+
+    private void tryLoadFountains(String fileFountains) throws IOException {
         try {
-            loadFountain(fileFountains);
+            loadFountains(fileFountains);
         } catch (IOException io) {
             System.out.println("Error: A file named " + fileFountains + " could not be loaded");
             System.out.println("Creating a new file named " + fileFountains + "\n");
@@ -42,11 +44,16 @@ public class FountainLocations implements Loadable, Saveable {
         } finally {
             System.out.println("Type 'EXIT' when you would like to close the program.");
         }
+    }
 
-        loadAllBuildings();
-        chooseOptions(lof);
-        saveFountain(fileFountains);
-        saveBuilding(fileBuildings);
+    private void tryLoadBuildings(String fileBuildings) throws IOException {
+        try {
+            loadBuildings(fileBuildings);
+        } catch (IOException io) {
+            System.out.println("Error: A file named " + fileBuildings + " could not be loaded");
+            System.out.println("Creating a new file named " + fileBuildings + "\n");
+            saveBuilding(fileBuildings);
+        }
     }
 
     private void chooseOptions(ListOfFountain lof) {
@@ -60,15 +67,12 @@ public class FountainLocations implements Loadable, Saveable {
             if (in.equals("1")) {
                 newFountain(lof);
             }
-
             if (in.equals("2")) {
                 removeFountain(lof);
             }
-
             if (in.equals("3")) {
                 printFountains(allFountains);
             }
-
             if (in.equals("4")) {
                 printFountainsInBuilding(lof);
             }
@@ -92,21 +96,33 @@ public class FountainLocations implements Loadable, Saveable {
                 int fountainRemoved = Integer.parseInt(stringFountainRemoved);
 
                 if (fountainRemoved < 0) {
-                 System.out.println("Error: Integer must be positive. Please try again.");
+                    System.out.println("Error: Integer must be positive. Please try again.");
                     removeFountain(lof);
                 } else {
-                    try {
-                        allFountains.remove(fountainRemoved - 1);
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Error: Fountain does not exist at this "
-                                + "index. Please enter a valid index.");
-                        removeFountain(lof);
-                    }
+                    tryRemoveFountain(lof, fountainRemoved);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Not a valid integer. Please try again.");
                 removeFountain(lof);
             }
+        }
+    }
+
+    private void tryRemoveFountain(ListOfFountain lof, int fountainRemoved) {
+        try {
+            String fountainDescription = allFountains.get(fountainRemoved - 1).getDescription();
+            Building b = allFountains.get(fountainRemoved - 1).getBuilding();
+            allFountains.remove(fountainRemoved - 1);
+            ArrayList<Fountain> buildingFountains = b.getFountains();
+            /*for (Fountain f : buildingFountains) {
+                if (f.getDescription().equals(fountainDescription)) {
+                    buildingFountains.remove(f);
+                }
+            } */
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: Fountain does not exist at this "
+                    + "index. Please enter a valid index.");
+            removeFountain(lof);
         }
     }
 
@@ -119,10 +135,7 @@ public class FountainLocations implements Loadable, Saveable {
     }
 
     private void newFountain(ListOfFountain lof) {
-        Scanner userFloor = new Scanner(System.in);
-        System.out.println("What floor is the water fountain on?");
-        System.out.println("Ex: 1");
-        String stringFloor = userFloor.nextLine();
+        String stringFloor = getFloor();
 
         try {
             int floor = Integer.parseInt(stringFloor);
@@ -131,26 +144,42 @@ public class FountainLocations implements Loadable, Saveable {
                 System.out.println("Error: Integer must be positive. Please try again.");
                 newFountain(lof);
             } else {
-                Scanner userBuildingName = new Scanner(System.in);
-                System.out.println("What building is in the water fountain in?");
-                String buildingName = userBuildingName.nextLine();
-
-                Scanner userType = new Scanner(System.in);
-                System.out.println("What type of fountain is it? "
-                        + "(Mechanical or Electronic)");
-                String type = userType.nextLine();
-
-                Scanner userDescription = new Scanner(System.in);
-                System.out.println("Describe where the water fountain is "
-                        + "(close to which classrooms)");
-                String description = userDescription.nextLine();
-
+                String buildingName = getBuildingName();
+                String type = getFountainType();
+                String description = getDescription();
                 tryAddFountain(lof, floor, buildingName, type, description);
             }
         } catch (NumberFormatException e) {
                 System.out.println("Error: Not a valid integer. Please try again.");
                 newFountain(lof);
         }
+    }
+
+    private String getFloor() {
+        Scanner userFloor = new Scanner(System.in);
+        System.out.println("What floor is the water fountain on?");
+        System.out.println("Ex: 1");
+        return userFloor.nextLine();
+    }
+
+    private String getDescription() {
+        Scanner userDescription = new Scanner(System.in);
+        System.out.println("Describe where the water fountain is "
+                + "(close to which classrooms)");
+        return userDescription.nextLine();
+    }
+
+    private String getFountainType() {
+        Scanner userType = new Scanner(System.in);
+        System.out.println("What type of fountain is it? "
+                + "(Mechanical or Electronic)");
+        return userType.nextLine();
+    }
+
+    private String getBuildingName() {
+        Scanner userBuildingName = new Scanner(System.in);
+        System.out.println("What building is in the water fountain in?");
+        return userBuildingName.nextLine();
     }
 
     private void tryAddFountain(ListOfFountain lof, int floor, String buildingName, String type, String description) {
@@ -204,7 +233,7 @@ public class FountainLocations implements Loadable, Saveable {
 
     // Got some code from here: https://stackoverflow.com/questions/
     // 29965764/how-to-parse-json-file-with-gson
-    public void loadFountain(String s) throws FileNotFoundException {
+    public void loadFountains(String s) throws FileNotFoundException {
         String path = s;
         BufferedReader br = new BufferedReader(new FileReader(path));
         Gson gson = new Gson();
@@ -216,7 +245,7 @@ public class FountainLocations implements Loadable, Saveable {
         allFountains = gson.fromJson(br, token.getType());
     }
 
-    public void loadBuilding(String s) throws FileNotFoundException {
+    public void loadBuildings(String s) throws FileNotFoundException {
         String path = s;
         BufferedReader br = new BufferedReader(new FileReader(path));
         Gson gson = new Gson();
