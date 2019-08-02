@@ -145,17 +145,21 @@ public class FountainLocations implements Loadable, Saveable {
                         + "(close to which classrooms)");
                 String description = userDescription.nextLine();
 
-                try {
-                    lof.AddFountain(floor, buildingName, type, description);
-                } catch (FountainTypeException e) {
-                    System.out.println("Error: Type must be Mechanical or "
-                            + "Electronic. Please try again. \n");
-                    newFountain(lof);
-                }
+                tryAddFountain(lof, floor, buildingName, type, description);
             }
         } catch (NumberFormatException e) {
                 System.out.println("Error: Not a valid integer. Please try again.");
                 newFountain(lof);
+        }
+    }
+
+    private void tryAddFountain(ListOfFountain lof, int floor, String buildingName, String type, String description) {
+        try {
+            lof.AddFountain(floor, buildingName, type, description);
+        } catch (FountainTypeException e) {
+            System.out.println("Error: Type must be Mechanical or "
+                    + "Electronic. Please try again. \n");
+            newFountain(lof);
         }
     }
 
@@ -171,10 +175,7 @@ public class FountainLocations implements Loadable, Saveable {
         } catch (NullPointerException e) {
             System.out.println("Error: This building does not exist or does not have fountains.");
             System.out.println("Returning to the main menu. \n");
-        } finally {
-            chooseOptions(lof);
         }
-
     }
 
     private void options() {
