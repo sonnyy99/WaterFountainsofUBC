@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import model.Building;
 import model.Fountain;
 import model.ListOfFountain;
+import model.ListOfFountainObserver;
 import model.exceptions.FountainTypeException;
 import model.fileio.Loadable;
 import model.fileio.Saveable;
@@ -23,6 +24,8 @@ public class FountainLocations implements Loadable, Saveable {
         final String fileFountains = "fountains.json";
         final String fileBuildings = "buildings.json";
         ListOfFountain lof = new ListOfFountain();
+        ListOfFountainObserver lofo = new ListOfFountainObserver();
+        lof.addObserver(lofo);
 
         tryLoadBuildings(fileBuildings);
         tryLoadFountains(fileFountains);
@@ -116,7 +119,7 @@ public class FountainLocations implements Loadable, Saveable {
             Fountain f = allFountains.get(fountainRemoved - 1);
             Building b = f.getBuilding();
             b.getFountains().remove(f);
-            allFountains.remove(f);
+            lof.removeFountain(f);
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: Fountain does not exist at this "

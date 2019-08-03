@@ -3,8 +3,9 @@ package model;
 import model.exceptions.FountainTypeException;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class ListOfFountain {
+public class ListOfFountain extends Observable {
     public static ArrayList<Fountain> allFountains;
 
     public ListOfFountain() {
@@ -26,7 +27,15 @@ public class ListOfFountain {
             Fountain f = new Fountain(floor, buildingName, type, description);
             setBuilding(buildingName, f);
             allFountains.add(f);
+            setChanged();
+            notifyObservers("added");
         }
+    }
+
+    public void removeFountain(Fountain f) {
+        allFountains.remove(f);
+        setChanged();
+        notifyObservers("removed");
     }
 
     private static void setBuilding(String buildingName, Fountain f) {
