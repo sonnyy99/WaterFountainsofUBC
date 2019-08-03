@@ -13,8 +13,8 @@ public class ReadWebPage {
         BufferedReader br = null;
 
         try {
-            String theURL = "https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html"; //this can point to any URL
-            URL url = new URL(theURL);
+            String theSite = "https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html"; //this can point to any URL
+            URL url = new URL(theSite);
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line;
