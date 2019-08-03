@@ -1,24 +1,22 @@
-package main.ui;
+package ui;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import main.model.Building;
-import main.model.Fountain;
-import main.model.ListOfFountain;
-import main.model.exceptions.FountainTypeException;
-import main.model.fileIO.Loadable;
-import main.model.fileIO.Saveable;
+import model.Building;
+import model.Fountain;
+import model.ListOfFountain;
+import model.exceptions.FountainTypeException;
+import model.fileio.Loadable;
+import model.fileio.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static main.model.ListOfBuilding.allBuildings;
-import static main.model.ListOfBuilding.getBuilding;
-import static main.model.ListOfBuilding.reloadAllBuildings;
-import static main.model.ListOfFountain.allFountains;
-import static main.model.ListOfFountain.reloadAllFountains;
+import static model.ListOfBuilding.*;
+import static model.ListOfFountain.allFountains;
+import static model.ListOfFountain.reloadAllFountains;
 
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException {
@@ -83,13 +81,7 @@ public class FountainLocations implements Loadable, Saveable {
 
     private void removeFountain(ListOfFountain lof) {
         isListEmpty(lof);
-
-        Scanner userRemove = new Scanner(System.in);
-        System.out.println("Which entry would you like to remove?");
-        System.out.println("To delete first entry type '1'");
-        System.out.println("To cancel type 'CANCEL'");
-
-        String stringFountainRemoved = userRemove.nextLine();
+        String stringFountainRemoved = getRemoved();
 
         if (stringFountainRemoved.equals("CANCEL")) {
             chooseOptions(lof);
@@ -108,6 +100,15 @@ public class FountainLocations implements Loadable, Saveable {
                 removeFountain(lof);
             }
         }
+    }
+
+    private String getRemoved() {
+        Scanner userRemove = new Scanner(System.in);
+        System.out.println("Which entry would you like to remove?");
+        System.out.println("To delete first entry type '1'");
+        System.out.println("To cancel type 'CANCEL'");
+
+        return userRemove.nextLine();
     }
 
     private void tryRemoveFountain(ListOfFountain lof, int fountainRemoved) {
@@ -148,8 +149,8 @@ public class FountainLocations implements Loadable, Saveable {
                 tryAddFountain(lof, floor, buildingName, type, description);
             }
         } catch (NumberFormatException e) {
-                System.out.println("Error: Not a valid integer. Please try again.");
-                newFountain(lof);
+            System.out.println("Error: Not a valid integer. Please try again.");
+            newFountain(lof);
         }
     }
 
@@ -182,7 +183,7 @@ public class FountainLocations implements Loadable, Saveable {
 
     private void tryAddFountain(ListOfFountain lof, int floor, String buildingName, String type, String description) {
         try {
-            lof.AddFountain(floor, buildingName, type, description);
+            lof.addFountain(floor, buildingName, type, description);
         } catch (FountainTypeException e) {
             System.out.println("Error: Type must be Mechanical or "
                     + "Electronic. Please try again. \n");

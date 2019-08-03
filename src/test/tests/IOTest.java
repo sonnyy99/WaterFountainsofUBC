@@ -1,26 +1,25 @@
 package tests;
 
-import main.model.ListOfBuilding;
-import main.model.ListOfFountain;
-import main.model.exceptions.FountainTypeException;
-import main.model.fileIO.Loadable;
-import main.model.fileIO.Saveable;
-import main.ui.FountainLocations;
-import org.junit.Before;
-import org.junit.Test;
+import model.ListOfBuilding;
+import model.ListOfFountain;
+import model.exceptions.FountainTypeException;
+import model.fileio.Loadable;
+import model.fileio.Saveable;
+import ui.FountainLocations;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IOTest {
     private FountainLocations testFL;
     private ListOfFountain testLOF;
     private ListOfBuilding testLOB;
 
-    @Before
+    @BeforeEach
     public void startup() {
         testFL = new FountainLocations();
         testLOF = new ListOfFountain();
@@ -44,7 +43,7 @@ public class IOTest {
 
     @Test
     public void testSaveAll() throws IOException, FountainTypeException {
-        testLOF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
+        testLOF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testSave(testFL);
         testLoad(testFL);
         assertEquals(2, ListOfFountain.allFountains.get(0).getFloor());

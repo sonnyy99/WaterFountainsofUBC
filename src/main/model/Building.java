@@ -1,7 +1,6 @@
-package main.model;
+package model;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Building {
     private String name;
@@ -13,7 +12,7 @@ public class Building {
     }
 
     public void addFountain(Fountain f) {
-        if(!fountainsInBuilding.contains(f)) {
+        if (!fountainsInBuilding.contains(f)) {
             fountainsInBuilding.add(f);
             f.addBuilding(this);
         }

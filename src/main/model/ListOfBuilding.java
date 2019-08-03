@@ -1,8 +1,8 @@
-package main.model;
+package model;
 
 import java.util.ArrayList;
 
-import static main.model.Building.loadFountains;
+import static model.Building.loadFountains;
 
 public class ListOfBuilding {
     public static ArrayList<Building> allBuildings;

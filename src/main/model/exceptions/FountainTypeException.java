@@ -1,4 +1,4 @@
-package main.model.exceptions;
+package model.exceptions;
 
 public class FountainTypeException extends Exception {
     public FountainTypeException(String s) {

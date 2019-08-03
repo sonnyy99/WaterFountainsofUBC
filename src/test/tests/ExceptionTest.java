@@ -1,19 +1,18 @@
 package tests;
 
-import main.model.ListOfFountain;
-import main.model.exceptions.FountainTypeException;
-import org.junit.Before;
-import org.junit.Test;
+import model.ListOfFountain;
+import model.exceptions.FountainTypeException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ExceptionTest {
 
     private ListOfFountain testLoF;
 
-    @Before
+    @BeforeEach
     public void newListOfFountain ()
     {
         testLoF = new ListOfFountain();
@@ -22,13 +21,13 @@ public class ExceptionTest {
     @Test
     public void testAddFountain() throws FountainTypeException {
         try {
-            testLoF.AddFountain(2, "The Nest", "Electronic", "By Blue Chip");
+            testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         } catch (FountainTypeException e) {
             fail("FountainTypeException should not have been thrown");
         }
 
         try {
-            testLoF.AddFountain(1, "The Birdcoop", "Mechanical", "By the staircase");
+            testLoF.addFountain(1, "The Birdcoop", "Mechanical", "By the staircase");
         } catch (FountainTypeException e) {
             fail("FountainTypeException should not have been thrown");
         }
@@ -36,7 +35,7 @@ public class ExceptionTest {
         assertEquals(2, ListOfFountain.allFountains.size());
 
         try {
-            testLoF.AddFountain(3, "The Sub", "Bad", "By the washrooms");
+            testLoF.addFountain(3, "The Sub", "Bad", "By the washrooms");
             fail("Should've thrown FountainTypeException");
         }
         catch (FountainTypeException e) {

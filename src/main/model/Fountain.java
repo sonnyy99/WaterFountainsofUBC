@@ -1,4 +1,4 @@
-package main.model;
+package model;
 
 import java.util.Objects;
 
@@ -19,8 +19,8 @@ public class Fountain {
 
     public void addBuilding(Building b) {
         if (this.building == null) {
-                this.building = b;
-                b.addFountain(this);
+            this.building = b;
+            b.addFountain(this);
         }
     }
 

@@ -1,6 +1,6 @@
-package main.model;
+package model;
 
-import main.model.exceptions.FountainTypeException;
+import model.exceptions.FountainTypeException;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class ListOfFountain {
     // MODIFIES: this
     // EFFECTS: Adds a fountain to the list of all fountains based on the
     //          user's input
-    public void AddFountain(int floor, String buildingName, String type,
+    public void addFountain(int floor, String buildingName, String type,
                             String description) throws FountainTypeException {
         if (!(type.equals("Mechanical") || type.equals("Electronic"))) {
             throw new FountainTypeException("Error: Fountain type must be "
@@ -27,7 +27,7 @@ public class ListOfFountain {
             setBuilding(buildingName, f);
             allFountains.add(f);
         }
-}
+    }
 
     private static void setBuilding(String buildingName, Fountain f) {
         Building b = ListOfBuilding.getBuilding((buildingName));
