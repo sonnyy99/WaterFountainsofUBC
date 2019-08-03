@@ -1,6 +1,7 @@
 package main.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Building {
     private String name;
@@ -33,6 +34,7 @@ public class Building {
     public ArrayList<Fountain> getFountains() {
         return this.fountainsInBuilding;
     }
+
 }
 
 

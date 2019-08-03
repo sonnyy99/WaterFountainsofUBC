@@ -7,7 +7,7 @@ public class Fountain {
     private String buildingName;
     private String type;
     private String description;
-    private Building building;
+    private transient Building building;
 
     public Fountain(int floor, String buildingName, String type,
                     String description) {
@@ -21,8 +21,8 @@ public class Fountain {
         if (this.building == null) {
                 this.building = b;
                 b.addFountain(this);
-            }
         }
+    }
 
     public int getFloor() {
         return this.floor;

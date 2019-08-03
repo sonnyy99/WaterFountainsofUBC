@@ -18,6 +18,7 @@ import static main.model.ListOfBuilding.allBuildings;
 import static main.model.ListOfBuilding.getBuilding;
 import static main.model.ListOfBuilding.reloadAllBuildings;
 import static main.model.ListOfFountain.allFountains;
+import static main.model.ListOfFountain.reloadAllFountains;
 
 public class FountainLocations implements Loadable, Saveable {
     public void run() throws IOException {
@@ -29,6 +30,7 @@ public class FountainLocations implements Loadable, Saveable {
         tryLoadFountains(fileFountains);
 
         reloadAllBuildings();
+        reloadAllFountains();
         chooseOptions(lof);
         saveFountain(fileFountains);
         saveBuilding(fileBuildings);
@@ -110,15 +112,11 @@ public class FountainLocations implements Loadable, Saveable {
 
     private void tryRemoveFountain(ListOfFountain lof, int fountainRemoved) {
         try {
-            String fountainDescription = allFountains.get(fountainRemoved - 1).getDescription();
-            Building b = allFountains.get(fountainRemoved - 1).getBuilding();
-            allFountains.remove(fountainRemoved - 1);
-            ArrayList<Fountain> buildingFountains = b.getFountains();
-            /*for (Fountain f : buildingFountains) {
-                if (f.getDescription().equals(fountainDescription)) {
-                    buildingFountains.remove(f);
-                }
-            } */
+            Fountain f = allFountains.get(fountainRemoved - 1);
+            Building b = f.getBuilding();
+            b.getFountains().remove(f);
+            allFountains.remove(f);
+
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: Fountain does not exist at this "
                     + "index. Please enter a valid index.");

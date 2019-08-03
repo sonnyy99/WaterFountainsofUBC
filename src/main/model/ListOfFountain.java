@@ -27,10 +27,9 @@ public class ListOfFountain {
             setBuilding(buildingName, f);
             allFountains.add(f);
         }
-
 }
 
-    private void setBuilding(String buildingName, Fountain f) {
+    private static void setBuilding(String buildingName, Fountain f) {
         if (ListOfBuilding.getBuilding(buildingName) != null) {
             f.addBuilding(ListOfBuilding.getBuilding(buildingName));
         } else {
@@ -39,4 +38,11 @@ public class ListOfFountain {
             f.addBuilding(b);
         }
     }
+
+    public static void reloadAllFountains() {
+        for (Fountain f: allFountains) {
+            setBuilding(f.getBuildingName(), f);
+        }
+    }
+
 }
