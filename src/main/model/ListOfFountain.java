@@ -30,10 +30,11 @@ public class ListOfFountain {
 }
 
     private static void setBuilding(String buildingName, Fountain f) {
-        if (ListOfBuilding.getBuilding(buildingName) != null) {
-            f.addBuilding(ListOfBuilding.getBuilding(buildingName));
+        Building b = ListOfBuilding.getBuilding((buildingName));
+        if (b != null) {
+            f.addBuilding(b);
         } else {
-            Building b = new Building(buildingName);
+            b = new Building(buildingName);
             ListOfBuilding.allBuildings.add(b);
             f.addBuilding(b);
         }
