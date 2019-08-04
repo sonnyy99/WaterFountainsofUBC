@@ -32,9 +32,11 @@ public class FountainLocations implements Loadable, Saveable {
 
         reloadAllBuildings();
         reloadAllFountains();
-        chooseOptions(lof);
-        saveFountain(fileFountains);
-        saveBuilding(fileBuildings);
+
+        //System.out.println("Type 'EXIT' when you would like to close the program.");
+        //chooseOptions(lof);
+        //saveFountain(fileFountains);
+        //saveBuilding(fileBuildings);
     }
 
     private void tryLoadFountains(String fileFountains) throws IOException {
@@ -44,8 +46,6 @@ public class FountainLocations implements Loadable, Saveable {
             System.out.println("Error: A file named " + fileFountains + " could not be loaded");
             System.out.println("Creating a new file named " + fileFountains + "\n");
             saveFountain(fileFountains);
-        } finally {
-            System.out.println("Type 'EXIT' when you would like to close the program.");
         }
     }
 

@@ -38,7 +38,7 @@ public class ListOfFountain extends Observable {
         notifyObservers("removed");
     }
 
-    private static void setBuilding(String buildingName, Fountain f) {
+    public static void setBuilding(String buildingName, Fountain f) {
         Building b = ListOfBuilding.getBuilding((buildingName));
         if (b != null) {
             f.addBuilding(b);

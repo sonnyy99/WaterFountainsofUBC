@@ -12,21 +12,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application implements EventHandler<ActionEvent> {
+
+public class Main extends Application {
+
+    private Button enterButton;
 
     public static void main(String[] args) throws IOException {
-        launch(args);
         FountainLocations fl = new FountainLocations();
-        ReadWebPage.read();
         fl.run();
+        ReadWebPage.read();
+        launch(args);
     }
 
-    // Followed this tutorial https://www.youtube.com/watch?v=S_JN7zO12H4&t=287s
+    // Followed this tutorial series https://www.youtube.com/watch?v=S_JN7zO12H4&t=287s
     @Override
     public void start(Stage mainStage) throws Exception {
         mainStage.setTitle("Water Fountains of UBC");
 
-        Label mainMenu = new Label("Main Menu");
+        Label mainMenu = new Label("MAIN MENU");
         Label addLabel = new Label("Enter [1] to add a water fountain");
         Label removeLabel = new Label("Enter [2] to remove a water fountain");
         Label printAllLabel = new Label("Enter [3] to display all water fountains");
@@ -34,7 +37,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         TextField inputString = new TextField();
 
-        Button enterButton = new Button("Click here to enter your choice");
+        enterButton = new Button("Click here to enter your choice");
         enterButton.setOnAction(e -> isValid(inputString.getText()));
 
         VBox layout = new VBox(20);
@@ -52,24 +55,35 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
     }
 
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        //if (actionEvent.getSource() == addButton) {
-           // System.out.println("DAB!");
-        //}
-    }
-
-    private boolean isValid(String text) {
+    private Boolean isValid(String text) {
         try {
             int choice = Integer.parseInt(text);
             if (choice < 0 || choice > 4) {
                 throw new NumberFormatException();
             }
-            System.out.println(choice);
+            chooseOptions(choice);
+
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("Error: Please enter an integer between 1 and 4");
+            ErrorWindow.display("ERROR", "You must enter an integer between 1 and 4");
             return false;
         }
     }
+
+    private void chooseOptions(int choice) {
+        if (choice == 1) {
+            System.out.println("Adding a fountain");
+            AddFountainWindow.display();
+        }
+        if (choice == 2) {
+            System.out.println("Removing a fountain");
+        }
+        if (choice == 3) {
+            System.out.println("Displaying all fountains");
+        }
+        if (choice == 4) {
+            System.out.println("Displaying all fountains in a building");
+        }
+    }
+
 }
