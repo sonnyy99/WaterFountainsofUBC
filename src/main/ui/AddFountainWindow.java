@@ -9,15 +9,16 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Fountain;
-import model.Building;
+import model.exceptions.FountainTypeException;
 
 import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.setBuilding;
-import static model.ListOfBuilding.allBuildings;
 
 public class AddFountainWindow {
+    static Stage window;
+
     public static void display() {
-        Stage window = new Stage();
+        window = new Stage();
 
         window.setTitle("Adding a Water Fountain");
         window.initModality(Modality.APPLICATION_MODAL);
@@ -37,12 +38,12 @@ public class AddFountainWindow {
         TextField buildingInput = new TextField();
         GridPane.setConstraints(buildingInput, 1, 1);
 
-        Label type = new Label("Type: ");
+        Label type = new Label("Type (Electronic/Mechanical): ");
         GridPane.setConstraints(type, 0, 2);
         TextField typeInput = new TextField();
         GridPane.setConstraints(typeInput, 1, 2);
 
-        Label description = new Label("Description: ");
+        Label description = new Label("Location Description: ");
         GridPane.setConstraints(description, 0, 3);
         TextField descriptionInput = new TextField();
         GridPane.setConstraints(descriptionInput, 1, 3);
@@ -64,12 +65,21 @@ public class AddFountainWindow {
     public static void addFountain(String floor, String building, String type, String description) {
         try {
             int floorInt = Integer.parseInt(floor);
-            Fountain f = new Fountain(floorInt, building, type, description);
-            setBuilding(building, f);
-            allFountains.add(f);
-            System.out.println(f.getDescription());
+            if (floorInt <= 0) {
+                throw new NumberFormatException();
+            } else if (!type.equals("Mechanical") && !type.equals("Electronic")) {
+                throw new FountainTypeException();
+            } else {
+                Fountain f = new Fountain(floorInt, building, type, description);
+                setBuilding(building, f);
+                allFountains.add(f);
+                PopupWindow.display("Success!", "Fountain added; returning to the main menu");
+                window.close();
+            }
         } catch (NumberFormatException e) {
-            System.out.println("LOL!");
+            PopupWindow.display("ERROR", "Ensure all fields are filled correctly");
+        } catch (FountainTypeException e) {
+            PopupWindow.display("ERROR", "Make sure the fountain type is correct");
         }
 
     }

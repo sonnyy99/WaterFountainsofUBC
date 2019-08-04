@@ -8,15 +8,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ErrorWindow {
+public class PopupWindow {
 
-    public static void display(String title, String errorMessage) {
+    public static void display(String title, String message) {
         Stage window = new Stage();
 
         window.setTitle(title);
         window.initModality(Modality.APPLICATION_MODAL);
 
-        Label label = new Label(errorMessage);
+        Label label = new Label(message);
 
         Button exitButton = new Button("Click here to close");
         exitButton.setOnAction(e -> window.close());

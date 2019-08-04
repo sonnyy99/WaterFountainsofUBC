@@ -1,8 +1,6 @@
 package ui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +20,8 @@ public class Main extends Application {
         fl.run();
         ReadWebPage.read();
         launch(args);
+        // fl.saveFountain(fl.fileFountains);
+        // fl.saveBuilding(fl.fileBuildings);
     }
 
     // Followed this tutorial series https://www.youtube.com/watch?v=S_JN7zO12H4&t=287s
@@ -65,7 +65,7 @@ public class Main extends Application {
 
             return true;
         } catch (NumberFormatException e) {
-            ErrorWindow.display("ERROR", "You must enter an integer between 1 and 4");
+            PopupWindow.display("ERROR", "You must enter an integer between 1 and 4");
             return false;
         }
     }

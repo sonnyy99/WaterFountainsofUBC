@@ -20,9 +20,10 @@ import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.reloadAllFountains;
 
 public class FountainLocations implements Loadable, Saveable {
+    final String fileFountains = "fountains.json";
+    final String fileBuildings = "buildings.json";
+
     public void run() throws IOException {
-        final String fileFountains = "fountains.json";
-        final String fileBuildings = "buildings.json";
         ListOfFountain lof = new ListOfFountain();
         ListOfFountainObserver lofo = new ListOfFountainObserver();
         lof.addObserver(lofo);
