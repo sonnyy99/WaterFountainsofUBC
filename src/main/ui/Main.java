@@ -67,11 +67,10 @@ public class Main extends Application {
 
     private void chooseOptions(int choice) {
         if (choice == 1) {
-            System.out.println("Adding a fountain");
             AddFountainWindow.display();
         }
         if (choice == 2) {
-            System.out.println("Removing a fountain");
+            RemoveFountainWindow.display();
         }
         if (choice == 3) {
             System.out.println("Displaying all fountains");
