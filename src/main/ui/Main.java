@@ -41,13 +41,8 @@ public class Main extends Application {
         enterButton.setOnAction(e -> isValid(inputString.getText()));
 
         VBox layout = new VBox(20);
-        layout.getChildren().add(mainMenu);
-        layout.getChildren().add(addLabel);
-        layout.getChildren().add(removeLabel);
-        layout.getChildren().add(printAllLabel);
-        layout.getChildren().add(printBuildingLabel);
-        layout.getChildren().add(inputString);
-        layout.getChildren().add(enterButton);
+        layout.getChildren().addAll(mainMenu, addLabel, removeLabel, printAllLabel,
+                printBuildingLabel, inputString, enterButton);
 
         Scene scene = new Scene(layout, 500, 300);
         mainStage.setScene(scene);

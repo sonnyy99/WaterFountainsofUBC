@@ -18,48 +18,63 @@ public class AddFountainWindow {
     static Stage window;
 
     public static void display() {
-        window = new Stage();
-
-        window.setTitle("Adding a Water Fountain");
-        window.initModality(Modality.APPLICATION_MODAL);
-
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(10);
-        grid.setHgap(10);
+        setupStage();
+        GridPane grid = setupGrid();
 
         Label floor = new Label("Floor: ");
-        GridPane.setConstraints(floor, 0, 0);
-        TextField floorInput = new TextField();
-        GridPane.setConstraints(floorInput, 1, 0);
-
         Label building = new Label("Building: ");
-        GridPane.setConstraints(building, 0, 1);
-        TextField buildingInput = new TextField();
-        GridPane.setConstraints(buildingInput, 1, 1);
-
         Label type = new Label("Type (Electronic/Mechanical): ");
-        GridPane.setConstraints(type, 0, 2);
-        TextField typeInput = new TextField();
-        GridPane.setConstraints(typeInput, 1, 2);
-
         Label description = new Label("Location Description: ");
-        GridPane.setConstraints(description, 0, 3);
+
+        TextField floorInput = new TextField();
+        TextField buildingInput = new TextField();
+        TextField typeInput = new TextField();
         TextField descriptionInput = new TextField();
-        GridPane.setConstraints(descriptionInput, 1, 3);
 
         Button enterButton = new Button("Click here to enter the data");
-        GridPane.setConstraints(enterButton, 0, 4);
+
+        placeOnGrid(floor, building, type, description, floorInput, buildingInput,
+                typeInput, descriptionInput, enterButton);
+
         enterButton.setOnAction(e -> addFountain(floorInput.getText(), buildingInput.getText(),
                 typeInput.getText(), descriptionInput.getText()));
-
 
         grid.getChildren().addAll(floor, floorInput, building, buildingInput,
                 type, typeInput, description, descriptionInput, enterButton);
 
+        finalizeScene(grid);
+    }
+
+    private static void finalizeScene(GridPane grid) {
         Scene scene = new Scene(grid, 400, 300);
         window.setScene(scene);
         window.showAndWait();
+    }
+
+    private static void placeOnGrid(Label floor, Label building, Label type, Label description, TextField floorInput, TextField buildingInput, TextField typeInput, TextField descriptionInput, Button enterButton) {
+        GridPane.setConstraints(floor, 0, 0);
+        GridPane.setConstraints(floorInput, 1, 0);
+        GridPane.setConstraints(building, 0, 1);
+        GridPane.setConstraints(buildingInput, 1, 1);
+        GridPane.setConstraints(type, 0, 2);
+        GridPane.setConstraints(typeInput, 1, 2);
+        GridPane.setConstraints(description, 0, 3);
+        GridPane.setConstraints(descriptionInput, 1, 3);
+        GridPane.setConstraints(enterButton, 0, 4);
+    }
+
+    private static void setupStage() {
+        window = new Stage();
+        window.setTitle("Adding a Water Fountain");
+        window.initModality(Modality.APPLICATION_MODAL);
+    }
+
+    private static GridPane setupGrid() {
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(10);
+        grid.setHgap(10);
+        return grid;
     }
 
     public static void addFountain(String floor, String building, String type, String description) {
