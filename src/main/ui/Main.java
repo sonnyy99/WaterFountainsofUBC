@@ -6,17 +6,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application implements EventHandler<ActionEvent> {
-
-    private Button addButton;
-    private Button removeButton;
-    private Button printAllButton;
-    private Button printBuildingButton;
 
     public static void main(String[] args) throws IOException {
         launch(args);
@@ -31,18 +27,24 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         mainStage.setTitle("Water Fountains of UBC");
 
         Label mainMenu = new Label("Main Menu");
+        Label addLabel = new Label("Enter [1] to add a water fountain");
+        Label removeLabel = new Label("Enter [2] to remove a water fountain");
+        Label printAllLabel = new Label("Enter [3] to display all water fountains");
+        Label printBuildingLabel = new Label("Enter [4] to display all fountains in a building");
 
-        addButton = new Button("Click to add a water fountain");
-        removeButton = new Button("Click to remove a water fountain");
-        printAllButton = new Button("Click to display all water fountains");
-        printBuildingButton = new Button("Click to display all fountains in a building");
+        TextField inputString = new TextField();
 
-        VBox layout = new VBox(30);
+        Button enterButton = new Button("Click here to enter your choice");
+        enterButton.setOnAction(e -> isValid(inputString.getText()));
+
+        VBox layout = new VBox(20);
         layout.getChildren().add(mainMenu);
-        layout.getChildren().add(addButton);
-        layout.getChildren().add(removeButton);
-        layout.getChildren().add(printAllButton);
-        layout.getChildren().add(printBuildingButton);
+        layout.getChildren().add(addLabel);
+        layout.getChildren().add(removeLabel);
+        layout.getChildren().add(printAllLabel);
+        layout.getChildren().add(printBuildingLabel);
+        layout.getChildren().add(inputString);
+        layout.getChildren().add(enterButton);
 
         Scene scene = new Scene(layout, 500, 300);
         mainStage.setScene(scene);
@@ -52,8 +54,22 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == addButton) {
-            System.out.println("DAB!");
+        //if (actionEvent.getSource() == addButton) {
+           // System.out.println("DAB!");
+        //}
+    }
+
+    private boolean isValid(String text) {
+        try {
+            int choice = Integer.parseInt(text);
+            if (choice < 0 || choice > 4) {
+                throw new NumberFormatException();
+            }
+            System.out.println(choice);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Please enter an integer between 1 and 4");
+            return false;
         }
     }
 }
