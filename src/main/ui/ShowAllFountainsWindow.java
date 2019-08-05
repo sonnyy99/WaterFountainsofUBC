@@ -14,10 +14,10 @@ import model.Fountain;
 
 import static model.ListOfFountain.allFountains;
 
-public class ShowAllFountainsWindow {
+class ShowAllFountainsWindow {
 
-    static Stage window;
-    static TableView<Fountain> table;
+    private static Stage window;
+    private static TableView<Fountain> table;
 
     public static void display() {
         setupStage();
@@ -68,7 +68,7 @@ public class ShowAllFountainsWindow {
         window.initModality(Modality.NONE);
     }
 
-    public static ObservableList<Fountain> getFountains() {
+    private static ObservableList<Fountain> getFountains() {
         ObservableList<Fountain> fountains = FXCollections.observableArrayList();
         fountains.addAll(allFountains);
         return fountains;

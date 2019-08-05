@@ -8,7 +8,7 @@ import java.net.URL;
 
 
 // Taken from edx which is taken from http://zetcode.com/articles/javareadwebpage/
-public class ReadWebPage {
+class ReadWebPage {
     public static void read() throws IOException, MalformedURLException {
         BufferedReader br = null;
 

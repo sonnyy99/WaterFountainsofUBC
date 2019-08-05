@@ -2,7 +2,6 @@
   <library name="lib">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/gson-2.8.5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/junit-jupiter-api-5.0.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

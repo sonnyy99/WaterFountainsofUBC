@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
-public class ExceptionTest {
+class ExceptionTest {
 
     private ListOfFountain testLoF;
 
     @BeforeEach
-    public void newListOfFountain ()
+    void newListOfFountain()
     {
         testLoF = new ListOfFountain();
     }
 
     @Test
-    public void testAddFountain() throws FountainTypeException {
+    void testAddFountain() throws FountainTypeException {
         try {
             testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         } catch (FountainTypeException e) {

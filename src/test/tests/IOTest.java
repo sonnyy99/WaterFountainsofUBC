@@ -15,20 +15,20 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class IOTest {
+class IOTest {
     private FountainLocations testFL;
     private ListOfFountain testLOF;
     private ListOfBuilding testLOB;
 
     @BeforeEach
-    public void startup() {
+    void startup() {
         testFL = new FountainLocations();
         testLOF = new ListOfFountain();
         testLOB = new ListOfBuilding();
     }
 
     @Test
-    public void testLoadAll() throws FileNotFoundException {
+    void testLoadAll() throws FileNotFoundException {
         testLoad(testFL);
         assertEquals(2, ListOfFountain.allFountains.get(0).getFloor());
         assertEquals("The Nest", ListOfFountain.allFountains.get(0).getBuildingName());
@@ -37,13 +37,13 @@ public class IOTest {
         assertEquals("The Nest", ListOfFountain.allFountains.get(0).getBuilding().getName());
     }
 
-    public void testLoad(Loadable testFL) throws FileNotFoundException {
+    private void testLoad(Loadable testFL) throws FileNotFoundException {
         testFL.loadFountains("testFountain.json");
         testFL.loadBuildings("testBuilding.json");
     }
 
     @Test
-    public void testSaveAll() throws IOException, FountainTypeException {
+    void testSaveAll() throws IOException, FountainTypeException {
         testLOF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testSave(testFL);
         testLoad(testFL);
@@ -53,7 +53,7 @@ public class IOTest {
         assertEquals("By Blue Chip", ListOfFountain.allFountains.get(0).getDescription());
     }
 
-    public void testSave(Saveable testFL) throws IOException {
+    private void testSave(Saveable testFL) throws IOException {
         testFL.saveFountain("testFountain.json");
         testFL.saveBuilding("testBuilding.json");
     }

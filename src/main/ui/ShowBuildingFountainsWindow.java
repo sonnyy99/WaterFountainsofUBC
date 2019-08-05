@@ -12,9 +12,9 @@ import model.Building;
 import model.Fountain;
 import model.ListOfBuilding;
 
-public class ShowBuildingFountainsWindow {
-    static Stage window;
-    static TableView<Fountain> table;
+class ShowBuildingFountainsWindow {
+    private static Stage window;
+    private static TableView<Fountain> table;
 
     public static void display() {
         setupStage();
@@ -85,7 +85,7 @@ public class ShowBuildingFountainsWindow {
         window.initModality(Modality.NONE);
     }
 
-    public static ObservableList<Fountain> getFountains(Building b) {
+    private static ObservableList<Fountain> getFountains(Building b) {
         ObservableList<Fountain> fountains = FXCollections.observableArrayList();
         fountains.addAll(b.getFountains());
         return fountains;

@@ -14,8 +14,8 @@ import model.exceptions.FountainTypeException;
 import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.setBuilding;
 
-public class AddFountainWindow {
-    static Stage window;
+class AddFountainWindow {
+    private static Stage window;
 
     public static void display() {
         setupStage();
@@ -79,7 +79,7 @@ public class AddFountainWindow {
         return grid;
     }
 
-    public static void addFountain(String floor, String building, String type, String description) {
+    private static void addFountain(String floor, String building, String type, String description) {
         try {
             int floorInt = Integer.parseInt(floor);
             if (floorInt <= 0) {

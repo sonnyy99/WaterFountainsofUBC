@@ -13,8 +13,8 @@ import model.Fountain;
 
 import static model.ListOfFountain.allFountains;
 
-public class RemoveFountainWindow {
-    static Stage window;
+class RemoveFountainWindow {
+    private static Stage window;
 
     public static void display() {
         setupStage();

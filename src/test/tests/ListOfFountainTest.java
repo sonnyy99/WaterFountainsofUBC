@@ -11,23 +11,23 @@ import static model.ListOfFountain.setBuilding;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ListOfFountainTest {
+class ListOfFountainTest {
     private ListOfFountain testLoF;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         testLoF = new ListOfFountain();
     }
 
     @Test
-    public void testAddFountain() throws FountainTypeException {
+    void testAddFountain() throws FountainTypeException {
         assertEquals(0, allFountains.size());
         testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         assertEquals(1, allFountains.size());
     }
 
     @Test
-    public void testAdd2Fountains() throws FountainTypeException {
+    void testAdd2Fountains() throws FountainTypeException {
         assertEquals(0, allFountains.size());
         testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         assertEquals(1, allFountains.size());
@@ -36,14 +36,14 @@ public class ListOfFountainTest {
     }
 
     @Test
-    public void testRemove() throws FountainTypeException {
+    void testRemove() throws FountainTypeException {
         testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         allFountains.remove(0);
         assertEquals(0, allFountains.size());
     }
 
     @Test
-    public void testRemove2() throws FountainTypeException {
+    void testRemove2() throws FountainTypeException {
         Fountain f = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         allFountains.add(f);
         assertEquals(1, allFountains.size());
@@ -52,7 +52,7 @@ public class ListOfFountainTest {
     }
 
     @Test
-    public void testRemoveComplex1() throws FountainTypeException {
+    void testRemoveComplex1() throws FountainTypeException {
         testLoF.addFountain(2, "The Nest", "Electronic", "By Blue Chip");
         testLoF.addFountain(1, "The Nest", "Electronic", "By The Corner Store");
         allFountains.remove(1);
@@ -62,7 +62,7 @@ public class ListOfFountainTest {
     }
 
     @Test
-    public void testRemoveComplex2() throws FountainTypeException {
+    void testRemoveComplex2() throws FountainTypeException {
         testLoF.addFountain(2, "The Nest", "Mechanical", "By Blue Chip");
         testLoF.addFountain(1, "The Nest", "Electronic", "By The Corner Store");
         testLoF.addFountain(1, "SRC", "Electronic", "Inside the Birdcoop");
@@ -75,7 +75,7 @@ public class ListOfFountainTest {
     }
 
     @Test
-    public void testSetBuilding() {
+    void testSetBuilding() {
         Fountain f = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         setBuilding("The Nest", f);
         assertTrue(f.getBuilding().getName().equals("The Nest"));

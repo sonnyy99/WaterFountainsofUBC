@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Building {
     private String name;
-    protected transient ArrayList<Fountain> fountainsInBuilding;
+    transient ArrayList<Fountain> fountainsInBuilding;
 
     public Building(String name) {
         this.name = name;

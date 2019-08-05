@@ -20,8 +20,8 @@ import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.reloadAllFountains;
 
 public class FountainLocations implements Loadable, Saveable {
-    final String fileFountains = "fountains.json";
-    final String fileBuildings = "buildings.json";
+    private final String fileFountains = "fountains.json";
+    private final String fileBuildings = "buildings.json";
 
     public void run() throws IOException {
         ListOfFountain lof = new ListOfFountain();
@@ -195,7 +195,7 @@ public class FountainLocations implements Loadable, Saveable {
         }
     }
 
-    public void printFountainsInBuilding(ListOfFountain lof) {
+    private void printFountainsInBuilding(ListOfFountain lof) {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Which building would you like to know the fountains of?");
         String buildingName = userInput.nextLine();
@@ -259,14 +259,14 @@ public class FountainLocations implements Loadable, Saveable {
 
     // REQUIRES: List of fountains is not null
     // EFFECTS: Prints out information about every fountain in the given list
-    public void printFountains(ArrayList<Fountain> fountains) {
+    private void printFountains(ArrayList<Fountain> fountains) {
         for (Fountain f : fountains) {
             printFountain(f);
         }
     }
 
     // EFFECTS: Prints out information about the given fountain
-    public void printFountain(Fountain f) {
+    private void printFountain(Fountain f) {
         System.out.println("Floor: " + f.getFloor());
         System.out.println("Building: " + f.getBuildingName());
         System.out.println("Type of Fountain: " + f.getType());
