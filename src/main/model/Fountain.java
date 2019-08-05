@@ -46,8 +46,12 @@ public class Fountain {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Fountain fountain = (Fountain) o;
         return Objects.equals(description, fountain.description);
     }

@@ -51,7 +51,9 @@ public class AddFountainWindow {
         window.showAndWait();
     }
 
-    private static void placeOnGrid(Label floor, Label building, Label type, Label description, TextField floorInput, TextField buildingInput, TextField typeInput, TextField descriptionInput, Button enterButton) {
+    private static void placeOnGrid(Label floor, Label building, Label type, Label description,
+                                    TextField floorInput, TextField buildingInput, TextField typeInput,
+                                    TextField descriptionInput, Button enterButton) {
         GridPane.setConstraints(floor, 0, 0);
         GridPane.setConstraints(floorInput, 1, 0);
         GridPane.setConstraints(building, 0, 1);
