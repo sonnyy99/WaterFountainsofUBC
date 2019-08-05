@@ -2,6 +2,8 @@ package model;
 
 import java.util.Objects;
 
+import static model.ListOfFountain.allFountains;
+
 public class Fountain {
     private int floor;
     private String buildingName;
@@ -42,6 +44,15 @@ public class Fountain {
 
     public Building getBuilding() {
         return this.building;
+    }
+
+    public boolean fountainExists(Fountain f) {
+        for (Fountain i: allFountains) {
+            if (f.equals(i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

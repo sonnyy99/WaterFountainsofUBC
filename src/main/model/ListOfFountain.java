@@ -25,7 +25,7 @@ public class ListOfFountain extends Observable {
                     + "Mechanical or Electronic.");
         } else {
             Fountain f = new Fountain(floor, buildingName, type, description);
-            if (fountainExists(f)) {
+            if (f.fountainExists(f)) {
                 System.out.println("That fountain already exists. Going back to the main menu \n");
             } else {
                 setBuilding(buildingName, f);
@@ -34,15 +34,6 @@ public class ListOfFountain extends Observable {
                 notifyObservers("added");
             }
         }
-    }
-
-    private boolean fountainExists(Fountain f) {
-        for (Fountain i: allFountains) {
-            if (f.equals(i)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void removeFountain(Fountain f) {

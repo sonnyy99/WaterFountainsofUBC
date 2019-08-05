@@ -88,10 +88,7 @@ class AddFountainWindow {
                 throw new FountainTypeException();
             } else {
                 Fountain f = new Fountain(floorInt, building, type, description);
-                setBuilding(building, f);
-                allFountains.add(f);
-                PopupWindow.display("Success!", "Fountain added; returning to the main menu");
-                window.close();
+                addIfNotExists(building, f);
             }
         } catch (NumberFormatException e) {
             PopupWindow.display("ERROR", "Ensure all fields are filled correctly");
@@ -99,5 +96,16 @@ class AddFountainWindow {
             PopupWindow.display("ERROR", "Make sure the fountain type is correct");
         }
 
+    }
+
+    private static void addIfNotExists(String building, Fountain f) {
+        if (f.fountainExists(f)) {
+            PopupWindow.display("ERROR", "That fountain already exists!");
+        } else {
+            setBuilding(building, f);
+            allFountains.add(f);
+            PopupWindow.display("Success!", "Fountain added; returning to the main menu");
+            window.close();
+        }
     }
 }
