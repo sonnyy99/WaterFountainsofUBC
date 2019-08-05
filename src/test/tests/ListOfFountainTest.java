@@ -3,7 +3,7 @@ package tests;
 import model.Building;
 import model.Fountain;
 import model.ListOfFountain;
-import model.exceptions.FountainTypeException;
+import model.FountainTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

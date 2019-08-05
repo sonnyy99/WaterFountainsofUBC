@@ -2,9 +2,9 @@ package tests;
 
 import model.ListOfBuilding;
 import model.ListOfFountain;
-import model.exceptions.FountainTypeException;
-import model.fileio.Loadable;
-import model.fileio.Saveable;
+import model.FountainTypeException;
+import model.Loadable;
+import model.Saveable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.FountainLocations;

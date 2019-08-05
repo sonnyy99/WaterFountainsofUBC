@@ -1,4 +1,4 @@
-package model.fileio;
+package model;
 
 
 import java.io.FileNotFoundException;

@@ -1,7 +1,5 @@
 package model;
 
-import model.exceptions.FountainTypeException;
-
 import java.util.ArrayList;
 import java.util.Observable;
 

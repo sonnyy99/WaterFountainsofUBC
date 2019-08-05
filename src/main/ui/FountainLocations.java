@@ -7,9 +7,9 @@ import model.Building;
 import model.Fountain;
 import model.ListOfFountain;
 import model.ListOfFountainObserver;
-import model.exceptions.FountainTypeException;
-import model.fileio.Loadable;
-import model.fileio.Saveable;
+import model.FountainTypeException;
+import model.Loadable;
+import model.Saveable;
 
 import java.io.*;
 import java.util.ArrayList;

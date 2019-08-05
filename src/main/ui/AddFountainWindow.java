@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Fountain;
-import model.exceptions.FountainTypeException;
+import model.FountainTypeException;
 
 import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.setBuilding;
