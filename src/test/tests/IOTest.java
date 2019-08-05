@@ -5,14 +5,15 @@ import model.ListOfFountain;
 import model.exceptions.FountainTypeException;
 import model.fileio.Loadable;
 import model.fileio.Saveable;
-import ui.FountainLocations;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.FountainLocations;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class IOTest {
     private FountainLocations testFL;

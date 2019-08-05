@@ -19,7 +19,7 @@ public class Main extends Application {
         FountainLocations fl = new FountainLocations();
         fl.run();
         ReadWebPage.read();
-        launch(args);
+        // launch(args);
         // fl.saveFountain(fl.fileFountains);
         // fl.saveBuilding(fl.fileBuildings);
     }

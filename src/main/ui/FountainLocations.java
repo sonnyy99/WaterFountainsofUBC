@@ -34,8 +34,8 @@ public class FountainLocations implements Loadable, Saveable {
         reloadAllBuildings();
         reloadAllFountains();
 
-        //System.out.println("Type 'EXIT' when you would like to close the program.");
-        //chooseOptions(lof);
+        System.out.println("Type 'EXIT' when you would like to close the program.");
+        chooseOptions(lof);
         //saveFountain(fileFountains);
         //saveBuilding(fileBuildings);
     }
