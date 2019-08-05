@@ -24,7 +24,7 @@ public class ShowBuildingFountainsWindow {
 
         Button enterButton = new Button("Click here to enter the data");
         enterButton.setOnAction(e -> enterBuilding(buildingText.getText()));
-        
+
         TableColumn<Fountain, String> floorColumn = new TableColumn<>("Floor");
         TableColumn<Fountain, String> buildingColumn = new TableColumn<>("Building Name");
         TableColumn<Fountain, String> typeColumn = new TableColumn<>("Type");
@@ -36,13 +36,17 @@ public class ShowBuildingFountainsWindow {
         table.getColumns().addAll(floorColumn, buildingColumn, typeColumn, descriptionColumn);
 
         GridPane layout = new GridPane();
+        placeOnGrid(buildingLabel, buildingText, enterButton);
+
+        layout.getChildren().addAll(buildingLabel, buildingText, enterButton, table);
+        finalizeScene(layout);
+    }
+
+    private static void placeOnGrid(Label buildingLabel, TextField buildingText, Button enterButton) {
         GridPane.setConstraints(buildingLabel, 0, 0);
         GridPane.setConstraints(buildingText, 0, 1);
         GridPane.setConstraints(enterButton, 0, 2);
         GridPane.setConstraints(table, 0, 3);
-
-        layout.getChildren().addAll(buildingLabel, buildingText, enterButton, table);
-        finalizeScene(layout);
     }
 
     private static void enterBuilding(String buildingName) {
