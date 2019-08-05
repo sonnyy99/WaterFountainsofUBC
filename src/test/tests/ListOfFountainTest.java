@@ -7,6 +7,7 @@ import model.FountainTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static model.Building.loadFountains;
 import static model.ListOfBuilding.allBuildings;
 import static model.ListOfBuilding.reloadAllBuildings;
 import static model.ListOfFountain.*;
@@ -111,12 +112,14 @@ class ListOfFountainTest {
         Fountain f = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         Fountain g = new Fountain(2, "The Nest", "Electronic", "By The Washrooms");
         Fountain h = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
-        Fountain j = null;
+        Fountain j = new Fountain(2, "The Nest", "Mechanical", "By The Washrooms");
+        Fountain k = null;
         Building b = new Building("The Krusty Krab");
         assertFalse(f.equals(g));
         assertTrue(f.equals(h));
-        assertFalse(f.equals(j));
+        assertFalse(f.equals(k));
         assertFalse(f.equals(b));
+        assertFalse(g.equals(j));
     }
 
     @Test
@@ -124,6 +127,24 @@ class ListOfFountainTest {
         Fountain f = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         Fountain g = new Fountain(2, "The Nest", "Electronic", "By Blue Chip");
         assertEquals(f.hashCode(), g.hashCode());
+    }
+
+    @Test
+    void testFountainInBuilding() {
+        Building b = new Building("The Krusty Krab");
+        Fountain f = new Fountain(1, "The Krusty Krab", "Mechanical", "By Squidward");
+        b.getFountains().add(f);
+        b.addFountain(f);
+        assertEquals(1, b.getFountains().size());
+    }
+
+    @Test
+    void testLoadNothing() {
+        Building b = new Building("The Krusty Krab");
+        Fountain f = new Fountain(1, "The Chum Bucket", "Mechanical", "By Plankton");
+        allFountains.add(f);
+        loadFountains(b);
+        assertEquals(0, b.getFountains().size());
     }
 }
 
