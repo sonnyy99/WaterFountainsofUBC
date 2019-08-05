@@ -19,9 +19,9 @@ public class Main extends Application {
         FountainLocations fl = new FountainLocations();
         fl.run();
         ReadWebPage.read();
-        // launch(args);
-        // fl.saveFountain(fl.fileFountains);
-        // fl.saveBuilding(fl.fileBuildings);
+        launch(args);
+        fl.saveFountain(fl.fileFountains);
+        fl.saveBuilding(fl.fileBuildings);
     }
 
     // Followed this tutorial series https://www.youtube.com/watch?v=S_JN7zO12H4&t=287s

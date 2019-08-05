@@ -12,4 +12,8 @@ public class ListOfFountainObserver implements Observer {
         updated += 1;
         System.out.println(updated + " fountain(s) have been added/removed during this session \n");
     }
+
+    public int getUpdated() {
+        return this.updated;
+    }
 }

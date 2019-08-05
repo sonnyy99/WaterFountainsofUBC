@@ -25,11 +25,24 @@ public class ListOfFountain extends Observable {
                     + "Mechanical or Electronic.");
         } else {
             Fountain f = new Fountain(floor, buildingName, type, description);
-            setBuilding(buildingName, f);
-            allFountains.add(f);
-            setChanged();
-            notifyObservers("added");
+            if (fountainExists(f)) {
+                System.out.println("That fountain already exists. Going back to the main menu \n");
+            } else {
+                setBuilding(buildingName, f);
+                allFountains.add(f);
+                setChanged();
+                notifyObservers("added");
+            }
         }
+    }
+
+    private boolean fountainExists(Fountain f) {
+        for (Fountain i: allFountains) {
+            if (f.equals(i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeFountain(Fountain f) {

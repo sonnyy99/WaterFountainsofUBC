@@ -53,12 +53,15 @@ public class Fountain {
             return false;
         }
         Fountain fountain = (Fountain) o;
-        return Objects.equals(description, fountain.description);
+        return floor == fountain.floor
+                && Objects.equals(buildingName, fountain.buildingName)
+                && Objects.equals(type, fountain.type)
+                && Objects.equals(description, fountain.description);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(description);
+        return Objects.hash(floor, buildingName, type, description);
     }
 }

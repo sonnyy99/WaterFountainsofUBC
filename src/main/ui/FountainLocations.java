@@ -20,8 +20,8 @@ import static model.ListOfFountain.allFountains;
 import static model.ListOfFountain.reloadAllFountains;
 
 public class FountainLocations implements Loadable, Saveable {
-    private final String fileFountains = "fountains.json";
-    private final String fileBuildings = "buildings.json";
+    protected final String fileFountains = "fountains.json";
+    protected final String fileBuildings = "buildings.json";
 
     public void run() throws IOException {
         ListOfFountain lof = new ListOfFountain();
@@ -34,8 +34,8 @@ public class FountainLocations implements Loadable, Saveable {
         reloadAllBuildings();
         reloadAllFountains();
 
-        System.out.println("Type 'EXIT' when you would like to close the program.");
-        chooseOptions(lof);
+        //System.out.println("Type 'EXIT' when you would like to close the program.");
+        //chooseOptions(lof);
         //saveFountain(fileFountains);
         //saveBuilding(fileBuildings);
     }

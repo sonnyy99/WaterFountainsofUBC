@@ -36,6 +36,12 @@ class ExceptionTest {
         assertEquals(2, ListOfFountain.allFountains.size());
 
         try {
+            throw new FountainTypeException();
+        } catch (FountainTypeException e) {
+            System.out.println("Test throwing with no message");
+        }
+
+        try {
             testLoF.addFountain(3, "The Sub", "Bad", "By the washrooms");
             fail("Should've thrown FountainTypeException");
         }
