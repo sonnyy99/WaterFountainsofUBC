@@ -73,10 +73,10 @@ public class Main extends Application {
             RemoveFountainWindow.display();
         }
         if (choice == 3) {
-            System.out.println("Displaying all fountains");
+            ShowAllFountainsWindow.display();
         }
         if (choice == 4) {
-            System.out.println("Displaying all fountains in a building");
+            ShowBuildingFountainsWindow.display();
         }
     }
 
